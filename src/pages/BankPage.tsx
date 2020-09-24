@@ -1,14 +1,7 @@
 import React, { CSSProperties } from 'react'
-import woodCutBG from '../images/woodcut_bg.png'
 import BankBG from '../images/bank_bg.png'
-import oakLogIcon from '../images/logs_oak.png'
-import teakLogIcon from '../images/logs_teak.png'
-import magicLogIcon from '../images/logs_magic.png'
-import mahoganyLogIcon from '../images/logs_mahogany.png'
-import mapleLogIcon from '../images/logs_maple.png'
-import bushLogIcon from '../images/bush.png'
-import willowLogIcon from '../images/logs_willow.png'
-import yewLogIcon from '../images/logs_yew.png'
+import { inject, observer } from 'mobx-react'
+import { ApplicationStore, InventoryItem } from '../data/applicationStore'
 
 interface State {
     bankItems: BankItem[]
@@ -19,59 +12,28 @@ interface BankItem {
     icon: string
     count: number
 }
-export class BankPage extends React.Component {
-    public state: State = {
-        bankItems: [
-            {
-                name: 'oak log',
-                icon: oakLogIcon,
-                count: 47,
-            },
-            {
-                name: 'willow log',
-                icon: willowLogIcon,
-                count: 2,
-            },
-            {
-                name: 'teak log',
-                icon: teakLogIcon,
-                count: 24,
-            },
-            {
-                name: 'magic log',
-                icon: magicLogIcon,
-                count: 392,
-            },
-            {
-                name: 'mahogany log',
-                icon: mahoganyLogIcon,
-                count: 39218,
-            },
-            {
-                name: 'maple log',
-                icon: mapleLogIcon,
-                count: 4819497,
-            },
-            {
-                name: 'yew log',
-                icon: yewLogIcon,
-                count: 4391,
-            },
-        ],
-    }
+
+interface Props {
+    applicationStore?: ApplicationStore
+}
+@inject('applicationStore')
+@observer
+export class BankPage extends React.Component<Props> {
+    private bankStore = this.props.applicationStore!.bankStore
+    private bankItems = this.bankStore.items
 
     public render(): JSX.Element {
         return (
             <div style={styles.pageBackground}>
-                {this.state.bankItems.map((item) => {
-                    return <BankSlot item={item} />
+                {Object.keys(this.bankItems).map((key, index) => {
+                    return <BankSlot key={index} item={this.bankItems[key]} />
                 })}
             </div>
         )
     }
 }
 
-export class BankSlot extends React.Component<{ item: BankItem }> {
+export class BankSlot extends React.Component<{ item: InventoryItem }> {
     public render() {
         return (
             <div
@@ -85,11 +47,11 @@ export class BankSlot extends React.Component<{ item: BankItem }> {
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginRight: 10,
-                    marginBottom: 10,
+                    marginBottom: 20,
                     position: 'relative',
                 }}
             >
-                <img style={{ height: 45, width: 45 }} src={this.props.item.icon} />
+                <img alt="todo" style={{ height: 45, width: 45 }} src={this.props.item.icon} />
                 <div
                     style={{
                         position: 'absolute',
@@ -116,13 +78,10 @@ export class BankSlot extends React.Component<{ item: BankItem }> {
 
 const styles = {
     pageBackground: {
-        padding: 25,
-        height: '100%',
-        width: '100%',
-        // backgroundImage: `url(${woodCutBG})`,
+        padding: 10,
+        width: 'calc(100% - 10px)',
         display: 'flex',
         flexWrap: 'wrap',
-        // paddingTop: 500,
     } as CSSProperties,
 }
 
