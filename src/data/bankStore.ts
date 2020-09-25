@@ -1,48 +1,8 @@
 import { observable } from 'mobx'
-import {
-    itemImages,
-    STICK,
-    OAK_LOG,
-    WILLOW_LOG,
-    TEAK_LOG,
-    MAGIC_LOG,
-    MAPLE_LOG,
-    MAHOGANY_LOG,
-    YEW_LOG,
-} from '../images/itemImages'
 import { ApplicationStore } from './applicationStore'
-import { BankSaveData } from './saveDataModels'
-
-export class InventoryItem {
-    @observable public count: number
-    public id: string
-    public icon: string
-
-    constructor(id, count) {
-        this.icon = itemImages[id]
-        this.id = id
-        this.count = count
-    }
-
-    public incrementValueBy(delta: number) {
-        if (this.count + delta < 0) {
-            throw Error(`Tried to increment value of item (${this.id}) below 0! (c: ${this.count} + ${delta}`)
-        }
-
-        this.count += delta
-    }
-}
-
-export const ALL_ITEMS = {
-    [STICK]: new InventoryItem(STICK, 0),
-    [OAK_LOG]: new InventoryItem(OAK_LOG, 0),
-    [WILLOW_LOG]: new InventoryItem(WILLOW_LOG, 0),
-    [TEAK_LOG]: new InventoryItem(TEAK_LOG, 0),
-    [MAGIC_LOG]: new InventoryItem(MAGIC_LOG, 0),
-    [MAPLE_LOG]: new InventoryItem(MAPLE_LOG, 0),
-    [MAHOGANY_LOG]: new InventoryItem(MAHOGANY_LOG, 0),
-    [YEW_LOG]: new InventoryItem(YEW_LOG, 0),
-}
+import { BankSaveData } from '../models/saveDataModels'
+import { ALL_ITEMS } from '../config/itemConfig'
+import { InventoryItem } from '../models/Item'
 
 export class BankStore {
     @observable public items: InventoryItem[] = []
@@ -106,6 +66,7 @@ export class BankStore {
             }
             empty_item.incrementValueBy(count)
             this.items.push(empty_item)
+            return
         }
 
         this.items[itemIndex].incrementValueBy(count)

@@ -1,4 +1,4 @@
-import { ITree } from './woodcuttingData'
+import { ITree } from './Tree'
 
 export interface WoodCuttingSaveData {
     taskKey: string
