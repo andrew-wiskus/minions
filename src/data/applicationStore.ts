@@ -1,38 +1,59 @@
 import { computed, observable } from 'mobx'
 import moment from 'moment'
-import {
-    itemImages,
-    MAGIC_LOG,
-    MAHOGANY_LOG,
-    MAPLE_LOG,
-    OAK_LOG,
-    STICK,
-    TEAK_LOG,
-    WILLOW_LOG,
-    YEW_LOG,
-} from '../images/itemImages'
-import { ISaveData } from './saveDataStore'
+import { BankStore } from './bankStore'
+import { WoodCuttingSaveData } from './saveDataModels'
 import { ALL_TREES, minionCraftRequirements, Tree } from './woodcuttingData'
 import { getLevelFromEXP, getNextLevelXP } from './_level_xp'
 
 export class ApplicationStore {
     @observable public bankStore: BankStore = new BankStore(this)
     @observable public woodcuttingStore: WoodCuttingStore = new WoodCuttingStore(this)
-    private updateFunctions: { [taskKey: string]: (timeDelta: number) => void } = {}
 
+    private updateFunctions: { [taskKey: string]: (timeDelta: number) => void } = {}
+    private saveFunctions: { [taskKey: string]: () => void } = {}
+    private lastSaveTime = moment().valueOf()
     private lastUpdatedTime = 0
 
     public addUpdateFunction = (key: string, updateFunc: (timeDelta: number) => void) => {
         this.updateFunctions[key] = updateFunc
     }
 
+    public addSaveFunction = (key: string, saveFunc: () => void) => {
+        this.saveFunctions[key] = saveFunc
+    }
+
+    public loadSaveData = (taskKey: string) => {
+        let encodedData = localStorage.getItem(taskKey)
+        if (encodedData == null) {
+            return {}
+        }
+
+        let data = JSON.parse(atob(encodedData))
+        return data
+    }
+
+    public saveData = () => {
+        Object.keys(this.saveFunctions).forEach((taskKey) => {
+            let data = this.saveFunctions[taskKey]()
+            console.log('SAVING ' + taskKey + ': ', data)
+            let encoded = btoa(JSON.stringify(data))
+            localStorage.setItem(taskKey, encoded)
+        })
+    }
+
     private loopOnRender = () => {
         const timeStamp = moment().valueOf()
         let fps = Math.floor(1000 / 60)
+        let saveInterval = 20000
 
         if (this.lastUpdatedTime + fps < timeStamp) {
             this.runUpdateLoop(timeStamp - this.lastUpdatedTime)
             this.lastUpdatedTime = timeStamp
+        }
+
+        if (this.lastSaveTime + saveInterval < timeStamp) {
+            this.saveData()
+            this.lastSaveTime = timeStamp
         }
 
         requestAnimationFrame(this.loopOnRender)
@@ -45,37 +66,19 @@ export class ApplicationStore {
     }
 
     constructor() {
-        this.saveData()
+        // localStorage.clear()
         this.loopOnRender()
     }
-
-    private saveData = () => {
-        var saveData: ISaveData = { testing: 123 }
-        var encoded = btoa(JSON.stringify(saveData))
-
-        localStorage.setItem('saveData', encoded)
-    }
-
-    private loadData = () => {
-        let encodedData = ''
-        var data = JSON.parse(atob(encodedData)) as ISaveData
-        console.log('data!: ' + data.testing)
-    }
-}
-
-export abstract class AGatherSkill {
-    public abstract level: number
-    public abstract xp: number
-    public abstract minionLevel: number
 }
 
 let BASE_MINIONS = 50
 export class WoodCuttingStore {
     private applicationStore: ApplicationStore
+    private taskKey = 'WOOD_CUT'
 
     @observable public treeData: { [key: string]: Tree } = {}
     @observable public minionLevel = 0
-    @observable public xp = 2000
+    @observable public xp = 0
 
     @computed
     public get totalMinions() {
@@ -181,76 +184,55 @@ export class WoodCuttingStore {
         this.applicationStore.bankStore.addItemToBank(key, cycleCount)
     }
 
+    private getDataForSave = () => {
+        let treeData = {}
+
+        Object.keys({ ...this.treeData }).forEach((key) => {
+            treeData[key] = this.treeData[key].getSaveData()
+        })
+
+        let saveData: WoodCuttingSaveData = {
+            taskKey: this.taskKey,
+            minionLevel: this.minionLevel,
+            treeData: treeData,
+            xp: this.xp,
+        }
+
+        return saveData
+    }
+
+    private loadData = (data: WoodCuttingSaveData) => {
+        Object.keys(data).forEach((key) => {
+            if (data[key] !== undefined) {
+                // sorry mom, but this is what I get for using classes in javascript
+                // I had to serialize the ITree from Tree to save to string, so this turns it back into class
+                // also probably a better way.
+                // but currently! its working
+                if (key === 'treeData') {
+                    let treeData = {}
+                    Object.keys(data[key]).forEach((k) => {
+                        treeData[k] = new Tree(data[key][k])
+                    })
+
+                    this[key] = treeData
+                } else {
+                    this[key] = data[key]
+                }
+            }
+        })
+    }
+
     constructor(applicationStore: ApplicationStore) {
         // get save state from last tree data
         // super()
         this.applicationStore = applicationStore
         this.treeData = ALL_TREES
-        applicationStore.addUpdateFunction('WOOD_CUTTIING', this.onUpdate)
-    }
-}
+        applicationStore.addUpdateFunction(this.taskKey, this.onUpdate)
+        applicationStore.addSaveFunction(this.taskKey, this.getDataForSave)
 
-export class InventoryItem {
-    @observable public count: number
-    public id: string
-    public icon: string
-
-    constructor(id) {
-        this.icon = itemImages[id]
-        this.id = id
-        this.count = 0
+        let loadedData = applicationStore.loadSaveData(this.taskKey)
+        this.loadData(loadedData)
     }
 
-    public incrementValueBy(delta: number) {
-        if (this.count + delta < 0) {
-            throw Error(`Tried to increment value of item (${this.id}) below 0! (c: ${this.count} + ${delta}`)
-        }
-
-        this.count += delta
-    }
-}
-
-const ALL_ITEMS = [
-    new InventoryItem(STICK),
-    new InventoryItem(OAK_LOG),
-    new InventoryItem(WILLOW_LOG),
-    new InventoryItem(TEAK_LOG),
-    new InventoryItem(MAGIC_LOG),
-    new InventoryItem(MAPLE_LOG),
-    new InventoryItem(MAHOGANY_LOG),
-    new InventoryItem(YEW_LOG),
-]
-
-class BankStore {
-    @observable private _items: InventoryItem[] = [...ALL_ITEMS]
-    private applicationStore: ApplicationStore
-
-    @computed public get items() {
-        // return this._items.filter((x) => x.count !==0)
-        return this._items
-    }
-
-    constructor(applicationStore: ApplicationStore) {
-        this.applicationStore = applicationStore
-    }
-
-    public getItem = (key: string) => {
-        let item = this._items.find((x) => x.id === key)
-
-        if (item === undefined) {
-            throw Error('undefined item was querried')
-        }
-
-        return item
-    }
-
-    public addItemToBank = (itemId: string, count: number) => {
-        let itemIndex = this._items.findIndex((x) => x.id === itemId)
-
-        if (itemIndex === -1) {
-            throw Error('undefined item was querieed')
-        }
-
-        this._items[itemIndex].incrementValueBy(count)
-    }
+    private RESET_WOODCUT_CONFIG = () => {}
 }

@@ -10,17 +10,70 @@ import MagicIcon from '../images/magic.png'
 import { loop } from '../loop'
 import { observable } from 'mobx'
 
+const treeConfig = {
+    [STICK]: {
+        levelRequirement: 0,
+        xpPer: 10,
+        BASE_TIME_PER_CYCLE: 7000,
+        name: 'bush',
+        image: BushIcon,
+    },
+    [OAK_LOG]: {
+        levelRequirement: 15,
+        xpPer: 15,
+        BASE_TIME_PER_CYCLE: 10000,
+        name: 'oak tree',
+        image: OakIcon,
+    },
+    [WILLOW_LOG]: {
+        levelRequirement: 30,
+        xpPer: 22,
+        BASE_TIME_PER_CYCLE: 15000,
+        name: 'willow tree',
+        image: WillowIcon,
+    },
+    [TEAK_LOG]: {
+        levelRequirement: 40,
+        xpPer: 30,
+        BASE_TIME_PER_CYCLE: 20000,
+        name: 'teak tree',
+        image: TeakIcon,
+    },
+    [MAPLE_LOG]: {
+        levelRequirement: 50,
+        xpPer: 40,
+        BASE_TIME_PER_CYCLE: 27000,
+        name: 'maple tree',
+        image: MapleIcon,
+    },
+    [MAHOGANY_LOG]: {
+        levelRequirement: 60,
+        xpPer: 60,
+        BASE_TIME_PER_CYCLE: 36000,
+        name: 'mahogany tree',
+        image: MahoganyIcon,
+    },
+    [YEW_LOG]: {
+        levelRequirement: 75,
+        xpPer: 80,
+        BASE_TIME_PER_CYCLE: 40000,
+        name: 'yew tree',
+        image: YewIcon,
+    },
+    [MAGIC_LOG]: {
+        levelRequirement: 90,
+        xpPer: 100,
+        BASE_TIME_PER_CYCLE: 60000,
+        name: 'magic tree',
+        image: MagicIcon,
+    },
+}
 export interface ITree {
     resource_id: string
     timeElapsed: number
     minions: number
     achievmentLevel: number
     achievmentXp: number
-    levelRequirement: number
-    xpPer: number
-    BASE_TIME_PER_CYCLE: number
-    name: string
-    image: string
 }
 
 export class Tree {
@@ -37,16 +90,18 @@ export class Tree {
     public treeTime
 
     constructor(tree: ITree) {
+        let id = tree.resource_id
         this.resource_id = tree.resource_id
         this.timeElapsed = tree.timeElapsed
         this.minions = tree.minions
         this.achievmentLevel = tree.achievmentLevel
         this.achievmentXp = tree.achievmentXp
-        this.levelRequirement = tree.levelRequirement
-        this.xpPer = tree.xpPer
-        this.BASE_TIME_PER_CYCLE = tree.BASE_TIME_PER_CYCLE
-        this.name = tree.name
-        this.image = tree.image
+
+        this.levelRequirement = treeConfig[id].levelRequirement
+        this.xpPer = treeConfig[id].xpPer
+        this.BASE_TIME_PER_CYCLE = treeConfig[id].BASE_TIME_PER_CYCLE
+        this.name = treeConfig[id].name
+        this.image = treeConfig[id].image
     }
 
     public getTimePerCycle = () => {
@@ -60,11 +115,6 @@ export class Tree {
             minions: this.minions,
             achievmentLevel: this.achievmentLevel,
             achievmentXp: this.achievmentXp,
-            levelRequirement: this.levelRequirement,
-            xpPer: this.xpPer,
-            BASE_TIME_PER_CYCLE: this.BASE_TIME_PER_CYCLE,
-            name: this.name,
-            image: this.image,
         }
     }
 }
@@ -82,11 +132,6 @@ export const ALL_TREES = {
         minions: 10,
         achievmentLevel: 1,
         achievmentXp: 10,
-        levelRequirement: 0,
-        xpPer: 10,
-        BASE_TIME_PER_CYCLE: 7000,
-        name: 'bush',
-        image: BushIcon,
     }),
     oak: new Tree({
         resource_id: OAK_LOG,
@@ -94,11 +139,6 @@ export const ALL_TREES = {
         minions: 0,
         achievmentLevel: 1,
         achievmentXp: 10,
-        levelRequirement: 15,
-        xpPer: 15,
-        BASE_TIME_PER_CYCLE: 10000,
-        name: 'oak tree',
-        image: OakIcon,
     }),
     willow: new Tree({
         resource_id: WILLOW_LOG,
@@ -106,12 +146,6 @@ export const ALL_TREES = {
         minions: 0,
         achievmentLevel: 1,
         achievmentXp: 10,
-        levelRequirement: 30,
-        xpPer: 22,
-        BASE_TIME_PER_CYCLE: 15000,
-
-        name: 'willow tree',
-        image: WillowIcon,
     }),
     teak: new Tree({
         resource_id: TEAK_LOG,
@@ -119,11 +153,6 @@ export const ALL_TREES = {
         minions: 0,
         achievmentLevel: 1,
         achievmentXp: 10,
-        levelRequirement: 30,
-        xpPer: 30,
-        BASE_TIME_PER_CYCLE: 20000,
-        name: 'teak tree',
-        image: TeakIcon,
     }),
     maple: new Tree({
         resource_id: MAPLE_LOG,
@@ -131,12 +160,6 @@ export const ALL_TREES = {
         minions: 0,
         achievmentLevel: 1,
         achievmentXp: 10,
-        levelRequirement: 30,
-        xpPer: 40,
-        BASE_TIME_PER_CYCLE: 27000,
-
-        name: 'maple tree',
-        image: MapleIcon,
     }),
     mahogany: new Tree({
         resource_id: MAHOGANY_LOG,
@@ -144,11 +167,6 @@ export const ALL_TREES = {
         minions: 0,
         achievmentLevel: 1,
         achievmentXp: 10,
-        levelRequirement: 30,
-        xpPer: 60,
-        BASE_TIME_PER_CYCLE: 36000,
-        name: 'mahogany tree',
-        image: MahoganyIcon,
     }),
     yew: new Tree({
         resource_id: YEW_LOG,
@@ -156,11 +174,6 @@ export const ALL_TREES = {
         minions: 0,
         achievmentLevel: 1,
         achievmentXp: 10,
-        levelRequirement: 30,
-        xpPer: 80,
-        BASE_TIME_PER_CYCLE: 40000,
-        name: 'yew tree',
-        image: YewIcon,
     }),
     magic: new Tree({
         resource_id: MAGIC_LOG,
@@ -168,11 +181,6 @@ export const ALL_TREES = {
         minions: 0,
         achievmentLevel: 1,
         achievmentXp: 10,
-        levelRequirement: 30,
-        xpPer: 100,
-        BASE_TIME_PER_CYCLE: 60000,
-        name: 'magic tree',
-        image: MagicIcon,
     }),
 }
 

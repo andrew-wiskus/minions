@@ -1,12 +1,12 @@
 import { ITree } from './woodcuttingData'
 
 export interface WoodCuttingSaveData {
-    taskKey: number
+    taskKey: string
     minionLevel: number
     treeData: { [key: string]: ITree }
     xp: number
 }
-export interface ISaveData {
-    testing: number
+
+export interface BankSaveData {
+    items: { id: string; count: number }[]
 }
-export class SaveData {}

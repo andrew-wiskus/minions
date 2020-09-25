@@ -68,27 +68,27 @@ interface GatheringSkill {
     onClickRoute: string
 }
 
-interface CraftingSkill {
-    name: string
-}
+// interface CraftingSkill {
+//     name: string
+// }
 
-let craftingSkills: CraftingSkill[] = [
-    { name: 'construction' },
-    { name: 'smithing' },
-    { name: 'cooking' },
-    { name: 'runecrafting' },
-    { name: 'fletching' },
-    { name: 'potion_making' },
-    { name: 'summoning' },
-    { name: 'divination' },
-    { name: 'weaving' },
-    { name: 'enchanting' },
-    { name: 'alchemy' },
-    { name: 'jewlery' },
-    { name: 'smithing' },
-    { name: 'smithing' },
-    { name: 'smithing' },
-]
+// let craftingSkills: CraftingSkill[] = [
+//     { name: 'construction' },
+//     { name: 'smithing' },
+//     { name: 'cooking' },
+//     { name: 'runecrafting' },
+//     { name: 'fletching' },
+//     { name: 'potion_making' },
+//     { name: 'summoning' },
+//     { name: 'divination' },
+//     { name: 'weaving' },
+//     { name: 'enchanting' },
+//     { name: 'alchemy' },
+//     { name: 'jewlery' },
+//     { name: 'smithing' },
+//     { name: 'smithing' },
+//     { name: 'smithing' },
+// ]
 
 let skills: GatheringSkill[] = [
     {

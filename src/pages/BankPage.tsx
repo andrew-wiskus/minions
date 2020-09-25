@@ -1,7 +1,8 @@
 import React, { CSSProperties } from 'react'
 import BankBG from '../images/bank_bg.png'
 import { inject, observer } from 'mobx-react'
-import { ApplicationStore, InventoryItem } from '../data/applicationStore'
+import { ApplicationStore } from '../data/applicationStore'
+import { InventoryItem } from '../data/bankStore'
 
 interface State {
     bankItems: BankItem[]
@@ -27,6 +28,10 @@ export class BankPage extends React.Component<Props> {
         return (
             <div style={styles.pageBackground}>
                 {Object.keys(bankItems).map((key, index) => {
+                    if (bankItems[key].count === 0) {
+                        return null
+                    }
+
                     return <BankSlot key={index} item={bankItems[key]} />
                 })}
             </div>
