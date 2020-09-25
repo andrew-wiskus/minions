@@ -20,6 +20,8 @@ import BankIcon from './images/BankIcon.png'
 import TrophyIcon from './images/TrophyIcon.png'
 import { INNER_COLOR, OUTER_COLOR } from './constants'
 import { BankPage } from './pages/BankPage'
+import { inject, observer } from 'mobx-react'
+import { ApplicationStore } from './data/applicationStore'
 
 export enum PageRoute {
     WOODCUTTING = 'WOODCUTTING',
@@ -32,7 +34,7 @@ interface State {
 }
 export class App extends React.Component<{}, State> {
     public state: State = {
-        currentPage: PageRoute.BANK,
+        currentPage: PageRoute.WOODCUTTING,
     }
 
     public render() {
@@ -47,8 +49,8 @@ export class App extends React.Component<{}, State> {
                 }}
             >
                 <GameBar onClickRoute={(route: PageRoute) => this.setState({ currentPage: route })} />
-                {this.state.currentPage == PageRoute.WOODCUTTING && <WoodCuttingPage />}
-                {this.state.currentPage == PageRoute.BANK && <BankPage />}
+                {this.state.currentPage === PageRoute.WOODCUTTING && <WoodCuttingPage />}
+                {this.state.currentPage === PageRoute.BANK && <BankPage />}
             </div>
         )
     }
@@ -56,18 +58,42 @@ export class App extends React.Component<{}, State> {
 
 export default App
 
-interface Skill {
+interface GatheringSkill {
     name: string
     icon: string
+    store: string
     level: number
     currentLevel: number
     xp: number
     onClickRoute: string
 }
 
-let skills: Skill[] = [
+interface CraftingSkill {
+    name: string
+}
+
+let craftingSkills: CraftingSkill[] = [
+    { name: 'construction' },
+    { name: 'smithing' },
+    { name: 'cooking' },
+    { name: 'runecrafting' },
+    { name: 'fletching' },
+    { name: 'potion_making' },
+    { name: 'summoning' },
+    { name: 'divination' },
+    { name: 'weaving' },
+    { name: 'enchanting' },
+    { name: 'alchemy' },
+    { name: 'jewlery' },
+    { name: 'smithing' },
+    { name: 'smithing' },
+    { name: 'smithing' },
+]
+
+let skills: GatheringSkill[] = [
     {
         name: 'Woodcutting',
+        store: 'woodcuttingStore',
         icon: WoodcuttingIcon,
         level: 1,
         currentLevel: 1,
@@ -76,6 +102,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Fishing',
+        store: 'XX',
         icon: FishingIcon,
         level: 1,
         currentLevel: 1,
@@ -84,6 +111,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Mining',
+        store: 'XX',
         icon: MiningIcon,
         level: 1,
         currentLevel: 1,
@@ -92,6 +120,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Farming',
+        store: 'XX',
         icon: FarmingIcon,
         level: 1,
         currentLevel: 1,
@@ -100,6 +129,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Hunting ',
+        store: 'XX',
         icon: HuntingIcon,
         level: 1,
         currentLevel: 1,
@@ -108,6 +138,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Divination',
+        store: 'XX',
         icon: DivinationIcon,
         level: 1,
         currentLevel: 1,
@@ -116,6 +147,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Diplomacy',
+        store: 'XX',
         icon: DiplomacyIcon,
         level: 1,
         currentLevel: 1,
@@ -124,6 +156,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Artifact Digging ',
+        store: 'XX',
         icon: ArtifactDiggingIcon,
         level: 1,
         currentLevel: 1,
@@ -132,6 +165,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Gem Mining',
+        store: 'XX',
         icon: GemMiningIcon,
         level: 1,
         currentLevel: 1,
@@ -140,6 +174,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Foraging ',
+        store: 'XX',
         icon: ForagingIcon,
         level: 1,
         currentLevel: 1,
@@ -148,6 +183,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Essence Gathering',
+        store: 'XX',
         icon: EssenceGatheringIcon,
         level: 1,
         currentLevel: 1,
@@ -156,6 +192,7 @@ let skills: Skill[] = [
     },
     {
         name: 'Study',
+        store: 'XX',
         icon: StudyIcon,
         level: 1,
         currentLevel: 1,
@@ -321,15 +358,26 @@ const styles = {
         borderBottomColor: INNER_COLOR,
     } as CSSProperties,
 }
-export class SkillDisplayButton extends React.Component<{ skill: Skill; onClick: () => void }, { hover: boolean }> {
+
+@inject('applicationStore')
+@observer
+export class SkillDisplayButton extends React.Component<
+    { skill: GatheringSkill; onClick: () => void; applicationStore?: ApplicationStore },
+    { hover: boolean }
+> {
     public state = {
         hover: false,
     }
 
     public render() {
+        let store = this.props.applicationStore!
         let width = 100
         let skillButtonRatio = 215 / 423
         let skill = this.props.skill
+        let level = 1
+        if (store[skill.store] !== undefined) {
+            level = (store[skill.store] as any).level // todo force this shit
+        }
 
         return (
             <div
@@ -355,25 +403,25 @@ export class SkillDisplayButton extends React.Component<{ skill: Skill; onClick:
                     style={{
                         position: 'absolute',
                         top: '-30%',
-                        right: skill.currentLevel < 10 ? '30%' : '27%',
+                        right: level < 10 ? '30%' : '27%',
                         color: '#EEE',
                         fontSize: 22,
                         fontWeight: 600,
                     }}
                 >
-                    {skill.currentLevel}
+                    {level}
                 </p>
 
                 <p
                     style={{
                         position: 'absolute',
-                        top: skill.level < 10 ? '8%' : '10%',
-                        right: skill.level < 10 ? '7%' : '2%',
+                        top: level < 10 ? '8%' : '10%',
+                        right: level < 10 ? '7%' : '2%',
                         color: '#EEE',
                         fontSize: 22,
                     }}
                 >
-                    {skill.level}
+                    {level}
                 </p>
 
                 <img

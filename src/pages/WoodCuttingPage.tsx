@@ -1,185 +1,25 @@
 import React, { CSSProperties } from 'react'
-import BushIcon from '../images/bush.png'
-import OakIcon from '../images/oak.png'
-import WillowIcon from '../images/willow.png'
-import TeakIcon from '../images/teak.png'
-import MapleIcon from '../images/maple.png'
-import MahoganyIcon from '../images/mahogany.png'
-import YewIcon from '../images/yew.png'
-import MagicIcon from '../images/magic.png'
-
 import MinionImage from '../images/minion.png'
 import AddButtonIcon from '../images/addButton.png'
 import RemoveButtonIcon from '../images/removeButton.png'
 import LockIcon from '../images/lockIcon.png'
 import { INNER_COLOR, LEVEL_GREEN, OUTER_COLOR } from '../constants'
-import { MAGIC_LOG, MAHOGANY_LOG, MAPLE_LOG, OAK_LOG, STICK, TEAK_LOG, WILLOW_LOG, YEW_LOG } from '../images/itemImages'
 import { inject, observer } from 'mobx-react'
 import { ApplicationStore } from '../data/applicationStore'
+import { Tree } from '../data/woodcuttingData'
+import { truncLargeNumber } from '../data/_level_xp'
 import { loop } from '../loop'
-
-interface Tree {
-    resource_id: string
-    timeElapsed: number
-    minions: number
-    achievmentLevel: number
-    achievmentXp: number
-    levelRequirement: number
-    xpPer: number
-    timePerCycle: number
-    name: string
-    image: string
-}
-
-interface State {
-    currentTime: number
-    woodcutting: {
-        bush: Tree
-        oak: Tree
-        willow: Tree
-        teak: Tree
-        maple: Tree
-        mahogany: Tree
-        yew: Tree
-        magic: Tree
-    }
-}
-
-function minionPercent(minionCount: number, percentPer: number) {
-    let base = 1
-    loop(minionCount)(() => (base = base * percentPer))
-    return base
-}
-
-let startTime = 0
-let currentTime = 0
-let lastUpdate = 0
-let fps = 1000 / 60
 
 @inject('applicationStore')
 @observer
-export class WoodCuttingPage extends React.Component<{ applicationStore?: ApplicationStore }, State> {
-    public state: State = {
-        currentTime: 0,
-        woodcutting: {
-            bush: {
-                resource_id: STICK,
-                timeElapsed: 0,
-                minions: 2,
-                achievmentLevel: 1,
-                achievmentXp: 10,
-                levelRequirement: 0,
-                xpPer: 10,
-                timePerCycle: 7000,
-                name: 'bush',
-                image: BushIcon,
-            },
-            oak: {
-                resource_id: OAK_LOG,
-                timeElapsed: 0,
-                minions: 2,
-                achievmentLevel: 1,
-                achievmentXp: 10,
-                levelRequirement: 15,
-                xpPer: 15,
-                timePerCycle: 10000,
-                name: 'oak tree',
-                image: OakIcon,
-            },
-            willow: {
-                resource_id: WILLOW_LOG,
-                timeElapsed: 0,
-                minions: 2,
-                achievmentLevel: 1,
-                achievmentXp: 10,
-                levelRequirement: 30,
-                xpPer: 22,
-                timePerCycle: 15000,
-                name: 'willow tree',
-                image: WillowIcon,
-            },
-            teak: {
-                resource_id: TEAK_LOG,
-                timeElapsed: 0,
-                minions: 2,
-                achievmentLevel: 1,
-                achievmentXp: 10,
-                levelRequirement: 30,
-                xpPer: 30,
-                timePerCycle: 20000,
-                name: 'teak tree',
-                image: TeakIcon,
-            },
-            maple: {
-                resource_id: MAPLE_LOG,
-                timeElapsed: 0,
-                minions: 2,
-                achievmentLevel: 1,
-                achievmentXp: 10,
-                levelRequirement: 30,
-                xpPer: 40,
-                timePerCycle: 27000,
-                name: 'maple tree',
-                image: MapleIcon,
-            },
-            mahogany: {
-                resource_id: MAHOGANY_LOG,
-                timeElapsed: 0,
-                minions: 2,
-                achievmentLevel: 1,
-                achievmentXp: 10,
-                levelRequirement: 30,
-                xpPer: 60,
-                timePerCycle: 36000,
-                name: 'mahogany tree',
-                image: MahoganyIcon,
-            },
-            yew: {
-                resource_id: YEW_LOG,
-                timeElapsed: 0,
-                minions: 2,
-                achievmentLevel: 1,
-                achievmentXp: 10,
-                levelRequirement: 30,
-                xpPer: 80,
-                timePerCycle: 40000,
-                name: 'yew tree',
-                image: YewIcon,
-            },
-            magic: {
-                resource_id: MAGIC_LOG,
-                timeElapsed: 0,
-                minions: 2,
-                achievmentLevel: 1,
-                achievmentXp: 10,
-                levelRequirement: 30,
-                xpPer: 100,
-                timePerCycle: 60000,
-                name: 'magic tree',
-                image: MagicIcon,
-            },
-        },
-    }
-
-    private changeMinionCount = (inc: number, treeKey: string) => {
-        let tree = this.state.woodcutting[treeKey]
-        let newCount = tree.minions + inc
-        newCount = Math.max(0, newCount)
-        tree.minions = newCount
-
-        let wc = this.state.woodcutting
-        wc[treeKey] = tree
-
-        this.setState({ woodcutting: wc })
-    }
-
-    public componentDidMount() {
-        //
-    }
-
+export class WoodCuttingPage extends React.Component<{ applicationStore?: ApplicationStore }> {
     public render() {
+        let store = this.props.applicationStore!.woodcuttingStore
+        let allTreeData = store.treeData
+
         let headerRatio = 198 / 826
         let headerWidth = 470
+        let xpText = `${truncLargeNumber(store.xp, 1)}/${truncLargeNumber(store.nextLevelXp, 1)}`
 
         return (
             <>
@@ -209,14 +49,15 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
                                 marginLeft: -10,
                                 display: 'flex',
                                 flexDirection: 'column',
+                                width: 300,
                             }}
                         >
                             <p style={{ color: 'white', fontWeight: 'lighter', marginTop: 5, marginLeft: 10 }}>
                                 <span style={{ fontSize: 25 }}>woodcutting</span>
                                 <br />
-                                level: 29
+                                level: {store.level}
                                 <br />
-                                minions: 22/22
+                                minions: {store.usedMinions}/{store.totalMinions}
                             </p>
                             <div
                                 style={{
@@ -243,7 +84,7 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
                                         textAlign: 'center',
                                     }}
                                 >
-                                    23.2k/28.6k
+                                    {xpText}
                                 </p>
                             </div>
                         </div>
@@ -256,20 +97,31 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
                                     marginRight: 0,
                                     transform: 'scale(0.8)',
                                     marginTop: 0,
+                                    width: 190,
+                                    height: `100%`,
+                                    position: 'relative',
                                 }}
                             >
-                                <p style={{ fontSize: 12, color: 'white', marginRight: 20 }}>
-                                    <span style={{ color: 'red' }}>2.4k/200k oak</span>
-                                    <br />
-                                    <span style={{ color: '#FFD05B' }}>401k/100k teak</span>
-                                    <br />
-                                    <span style={{ color: '#FFD05B' }}>53k/40k maple</span>
-                                    <br />
-                                    <span style={{ color: '#FFD05B' }}>14.4k/10k yew</span>
-                                </p>
+                                <div
+                                    style={{
+                                        fontSize: 12,
+                                        color: 'white',
+                                        marginRight: 20,
+                                        position: 'absolute',
+                                        textAlign: 'right',
+                                        top: 0,
+                                        left: -200,
+                                        width: 300,
+                                    }}
+                                >
+                                    <MinionCraftRecipie />
+                                </div>
                                 <img
                                     alt="todo"
                                     style={{
+                                        position: 'absolute',
+                                        right: 15,
+                                        top: 0,
                                         height: 80,
                                         width: 60,
                                         objectFit: 'contain',
@@ -278,9 +130,10 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
                                     }}
                                     src={MinionImage}
                                 />
+                                <div style={{ position: 'absolute', bottom: 5, height: 20 }}>
+                                    <CraftMinionButton />
+                                </div>
                             </div>
-
-                            <CraftMinionButton />
                         </div>
                     </div>
                 </div>
@@ -301,14 +154,14 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
                     <SkillInfoButton text={'information'} />
                 </div>
                 <div style={styles.pageBackground}>
-                    {Object.keys(this.state.woodcutting).map((key, i) => {
-                        let tree: any = this.state.woodcutting[key]
+                    {Object.keys(allTreeData).map((key, i) => {
+                        let tree: any = allTreeData[key]
                         return (
                             <WoodcuttingTree
                                 key={i}
                                 wcKey={key}
                                 tree={tree}
-                                onChangeMinion={(inc: number) => this.changeMinionCount(inc, key)}
+                                onChangeMinion={(inc: number) => store.incMinionToTree(key, inc)}
                             />
                         )
                     })}
@@ -316,6 +169,51 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
             </>
         )
     }
+}
+
+@inject('applicationStore')
+@observer
+class MinionCraftRecipie extends React.Component<{ applicationStore?: ApplicationStore }> {
+    public render() {
+        const store = this.props.applicationStore!
+        const recipie = store.woodcuttingStore.nextMinionCraft
+        const items = store.bankStore.items
+
+        return (
+            <>
+                {Object.keys(recipie).map((key, index) => {
+                    let req = recipie[key]
+                    let bankItem = items.find((x) => x.id === key)
+                    if (bankItem === undefined) {
+                        throw Error('undefined bank item when trying to make minion recipie')
+                    }
+                    let amount = bankItem.count
+                    let color = amount >= req ? '#FFD05B' : 'red'
+
+                    return (
+                        <div key={index}>
+                            <span style={{ color: color }}>{`
+                            ${truncLargeNumber(amount, 1)}
+                            /
+                            ${truncLargeNumber(req, 1)}
+                            ${paddingLeft(key.toLowerCase().replace('_', '').replace('log', ''), 8)}
+                            
+                            `}</span>
+                            {index !== Object.keys(recipie).length - 1 && <br />}
+                        </div>
+                    )
+                })}
+            </>
+        )
+    }
+}
+
+const paddingLeft = function (str, paddingValue) {
+    let pad = ''
+    if (str.length < paddingValue) {
+        loop(paddingValue - str.length)(() => (pad += ''))
+    }
+    return pad + str
 }
 
 class SkillInfoButton extends React.Component<{ text: string }, { hover: boolean }> {
@@ -354,7 +252,8 @@ class SkillInfoButton extends React.Component<{ text: string }, { hover: boolean
     }
 }
 
-class CraftMinionButton extends React.Component<{}, { hover: boolean }> {
+@inject('applicationStore')
+class CraftMinionButton extends React.Component<{ applicationStore?: ApplicationStore }, { hover: boolean }> {
     public state = {
         hover: false,
     }
@@ -362,6 +261,7 @@ class CraftMinionButton extends React.Component<{}, { hover: boolean }> {
     public render() {
         return (
             <div
+                onClick={this.props.applicationStore!.woodcuttingStore.craftMinion}
                 style={{
                     backgroundColor: this.state.hover ? '#999' : INNER_COLOR,
                     height: 25,
@@ -393,17 +293,20 @@ class CraftMinionButton extends React.Component<{}, { hover: boolean }> {
     }
 }
 
+@inject('applicationStore')
+@observer
 class WoodcuttingTree extends React.Component<{
     wcKey: string
     tree: Tree
+    applicationStore?: ApplicationStore
     onChangeMinion: (inc: number) => void
 }> {
     public render() {
         let tree = this.props.tree
-        let adjustedForMinion = minionPercent(tree.minions, 0.9)
-        let cycleTime = Math.floor(tree.timePerCycle * adjustedForMinion)
-        let xpPerSecondText = `${tree.xpPer}xp / ${cycleTime / 1000} sec`
+        let cycleTime = tree.getTimePerCycle()
+        let xpPerSecondText = `${tree.xpPer}xp / ${Math.floor(cycleTime / 100) / 10} sec`
         let progressPercent = (tree.timeElapsed / cycleTime) * 100 + '%'
+        let notLevelRequired = this.props.applicationStore!.woodcuttingStore.level < tree.levelRequirement
 
         return (
             <div
@@ -411,9 +314,36 @@ class WoodcuttingTree extends React.Component<{
                 className="noselect"
                 style={{
                     ...styles.containerBox,
+                    opacity: notLevelRequired ? 0.6 : 1,
+                    borderTop: tree.minions === 0 ? '10px solid grey' : styles.containerBox.borderTop,
+                    position: 'relative',
                 }}
             >
-                <div style={{ transform: 'scale(0.7)', marginLeft: -30, marginTop: -20 }}>
+                {notLevelRequired && (
+                    <div
+                        style={{
+                            position: 'absolute',
+                            top: -10,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            borderRadius: 8,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            zIndex: 99,
+                        }}
+                    >
+                        <img alt={'locked'} src={LockIcon} style={{ height: 150, width: 150 }} />
+                    </div>
+                )}
+                <div
+                    style={{
+                        transform: 'scale(0.7)',
+                        marginLeft: -30,
+                        marginTop: -20,
+                    }}
+                >
                     <div style={{ ...styles.headerContainer }}>
                         <p
                             style={{

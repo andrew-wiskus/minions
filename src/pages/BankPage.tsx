@@ -20,19 +20,21 @@ interface Props {
 @observer
 export class BankPage extends React.Component<Props> {
     private bankStore = this.props.applicationStore!.bankStore
-    private bankItems = this.bankStore.items
 
     public render(): JSX.Element {
+        let bankItems = this.bankStore.items
+
         return (
             <div style={styles.pageBackground}>
-                {Object.keys(this.bankItems).map((key, index) => {
-                    return <BankSlot key={index} item={this.bankItems[key]} />
+                {Object.keys(bankItems).map((key, index) => {
+                    return <BankSlot key={index} item={bankItems[key]} />
                 })}
             </div>
         )
     }
 }
 
+@observer
 export class BankSlot extends React.Component<{ item: InventoryItem }> {
     public render() {
         return (
