@@ -10,7 +10,10 @@ export interface ITree {
     achievmentXp: number
 }
 
-export class Tree {
+export interface Resource {
+    minions: number
+}
+export class Tree implements Resource {
     public resource_id
     @observable public timeElapsed
     @observable public minions

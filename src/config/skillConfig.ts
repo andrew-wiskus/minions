@@ -16,6 +16,7 @@ import fishingBG from '../images/FishingBG.png'
 export enum PageRoute {
     WOODCUTTING = 'WOODCUTTING',
     BANK = 'BANK',
+    FISHING = 'FISHING',
     TODO = 'TODO',
 }
 
@@ -49,7 +50,7 @@ export let GATHER_SKILLS: GatheringSkill[] = [
         background: fishingBG,
         currentLevel: 1,
         xp: 0,
-        onClickRoute: 'Fishing',
+        onClickRoute: PageRoute.FISHING,
     },
     {
         name: 'Mining',

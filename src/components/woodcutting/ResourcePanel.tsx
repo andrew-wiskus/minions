@@ -6,7 +6,7 @@ import LockIcon from '../../images/lockIcon.png'
 import MinionImage from '../../images/minion.png'
 import AddButtonIcon from '../../images/addButton.png'
 import RemoveButtonIcon from '../../images/removeButton.png'
-import { Tree } from '../../models/Tree'
+import { Resource, Tree } from '../../models/Tree'
 
 @inject('applicationStore')
 @observer
@@ -49,31 +49,7 @@ export class ResourcePanel extends React.Component<{
                 </div>
 
                 <div style={styles.triButtonContainer}>
-                    {/* MINION INCREMENT BUTTON */}
-                    <div style={{ marginRight: 7, ...styles.triButton }}>
-                        <div style={styles.minionCountContainer}>
-                            <p style={styles.minionCountText}>{tree.minions}</p>
-
-                            <img alt="todo" style={styles.minionImage} src={MinionImage} />
-
-                            <div style={styles.minionIncrementContainer}>
-                                <div
-                                    style={{ ...styles.minionIncrement, borderBottom: '2px solid #2e343e' }}
-                                    onClick={() => this.props.onChangeMinion(1)}
-                                >
-                                    <img alt="todo" style={styles.minionIncrementIcon} src={AddButtonIcon} />
-                                </div>
-
-                                <div
-                                    style={{ ...styles.minionIncrement, borderTop: '2px solid #2e343e' }}
-                                    onClick={() => this.props.onChangeMinion(-1)}
-                                >
-                                    <img alt="todo" style={styles.minionIncrementIcon} src={RemoveButtonIcon} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* END */}
+                    <MinionCounter onChangeMinion={this.props.onChangeMinion} resource={tree} />
 
                     <div style={styles.triButton}>
                         <img alt="todo" src={LockIcon} style={styles.lockIconSmall} />
@@ -81,6 +57,36 @@ export class ResourcePanel extends React.Component<{
 
                     <div style={{ marginLeft: 7, ...styles.triButton }}>
                         <img alt="todo" src={LockIcon} style={styles.lockIconSmall} />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export class MinionCounter extends React.Component<{ resource: Resource; onChangeMinion: (inc: number) => void }> {
+    public render() {
+        return (
+            <div style={{ marginRight: 7, ...styles.triButton }}>
+                <div style={styles.minionCountContainer}>
+                    <p style={styles.minionCountText}>{this.props.resource.minions}</p>
+
+                    <img alt="todo" style={styles.minionImage} src={MinionImage} />
+
+                    <div style={styles.minionIncrementContainer}>
+                        <div
+                            style={{ ...styles.minionIncrement, borderBottom: '2px solid #2e343e' }}
+                            onClick={() => this.props.onChangeMinion(1)}
+                        >
+                            <img alt="todo" style={styles.minionIncrementIcon} src={AddButtonIcon} />
+                        </div>
+
+                        <div
+                            style={{ ...styles.minionIncrement, borderTop: '2px solid #2e343e' }}
+                            onClick={() => this.props.onChangeMinion(-1)}
+                        >
+                            <img alt="todo" style={styles.minionIncrementIcon} src={RemoveButtonIcon} />
+                        </div>
                     </div>
                 </div>
             </div>
