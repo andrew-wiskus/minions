@@ -1,5 +1,5 @@
 import { observable } from 'mobx'
-import { treeConfig } from '../config/woodCutting'
+import { treeConfig } from '../config/woodCuttingConfig'
 import { loop } from '../loop'
 
 export interface ITree {

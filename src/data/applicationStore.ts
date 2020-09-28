@@ -1,12 +1,14 @@
 import { observable } from 'mobx'
 import moment from 'moment'
 import { BankStore } from './bankStore'
+import { FishingStore } from './fishingStore'
 import { WoodCuttingStore } from './woodcuttingStore'
 
 export class ApplicationStore {
     @observable public bankStore: BankStore = new BankStore(this)
     @observable public woodcuttingStore: WoodCuttingStore = new WoodCuttingStore(this)
-
+    @observable public fishingStore: FishingStore = new FishingStore(this)
+    
     private updateFunctions: { [taskKey: string]: (timeDelta: number) => void } = {}
     private saveFunctions: { [taskKey: string]: () => void } = {}
     private lastSaveTime = moment().valueOf()

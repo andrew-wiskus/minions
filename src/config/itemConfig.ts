@@ -7,6 +7,7 @@ import {
     MAHOGANY_LOG_ICON,
     YEW_LOG_ICON,
     STICK_LOG_ICON,
+    SHRIMP_NORMAL_ICON
 } from '../images/itemImages'
 import { InventoryItem } from '../models/Item'
 
@@ -19,6 +20,8 @@ export const MAHOGANY_LOG = 'MAHOGANY_LOG'
 export const YEW_LOG = 'YEW_LOG'
 export const STICK = 'STICK'
 
+export const SHRIMP_NORMAL = 'SHRIMP_NORMAL'
+
 export const itemImages = {
     [OAK_LOG]: OAK_LOG_ICON,
     [WILLOW_LOG]: WILLOW_LOG_ICON,
@@ -28,6 +31,8 @@ export const itemImages = {
     [MAHOGANY_LOG]: MAHOGANY_LOG_ICON,
     [YEW_LOG]: YEW_LOG_ICON,
     [STICK]: STICK_LOG_ICON,
+
+    [SHRIMP_NORMAL]: SHRIMP_NORMAL_ICON
 }
 
 export const ALL_ITEMS = {
@@ -39,6 +44,8 @@ export const ALL_ITEMS = {
     [MAPLE_LOG]: new InventoryItem(MAPLE_LOG, 0),
     [MAHOGANY_LOG]: new InventoryItem(MAHOGANY_LOG, 0),
     [YEW_LOG]: new InventoryItem(YEW_LOG, 0),
+
+    [SHRIMP_NORMAL]: new InventoryItem(SHRIMP_NORMAL, 0)
 }
 
 export interface BankItem {

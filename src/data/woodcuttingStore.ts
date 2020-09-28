@@ -1,5 +1,5 @@
 import { observable, computed } from 'mobx'
-import { minionCraftRequirements, ALL_TREES } from '../config/woodCutting'
+import { minionCraftRequirements, ALL_TREES } from '../config/woodCuttingConfig'
 import { Tree } from '../models/Tree'
 import { ApplicationStore } from './applicationStore'
 import { WoodCuttingSaveData } from '../models/saveDataModels'
@@ -129,7 +129,7 @@ export class WoodCuttingStore {
         this.applicationStore.bankStore.addItemToBank(key, cycleCount)
     }
 
-    private getDataForSave = () => {
+    private getDataToSave = (): WoodCuttingSaveData => {
         let treeData = {}
 
         Object.keys({ ...this.treeData }).forEach((key) => {
@@ -171,7 +171,7 @@ export class WoodCuttingStore {
         this.applicationStore = applicationStore
         this.treeData = ALL_TREES
         applicationStore.addUpdateFunction(this.taskKey, this.onUpdate)
-        applicationStore.addSaveFunction(this.taskKey, this.getDataForSave)
+        applicationStore.addSaveFunction(this.taskKey, this.getDataToSave)
 
         let loadedData = applicationStore.loadSaveData(this.taskKey)
         this.loadData(loadedData)
