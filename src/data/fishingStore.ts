@@ -1,5 +1,7 @@
+import { time } from "console"
 import { observable } from "mobx"
 import { ALL_FISHING_SPOTS } from "../config/fishingConfig"
+import { treeConfig } from "../config/woodCuttingConfig"
 import { FishingSpot } from "../models/FishingSpot"
 import { FishingSaveData } from "../models/saveDataModels"
 import { ApplicationStore } from "./applicationStore"
@@ -16,7 +18,34 @@ export class FishingStore {
     @observable public xp = 0
 
     private onUpdate = (timeDelta: number) => {
-        console.log("updating: ", timeDelta)
+        // console.log("updating: ", timeDelta)
+        
+        Object.keys(this.fishingData).forEach(key => {
+            let fishingSpot = this.fishingData[key]
+
+            if(fishingSpot.minions > 0) {
+                let currentTime = fishingSpot.timeElapsed
+                currentTime = currentTime + timeDelta
+
+                if(currentTime > fishingSpot.currentCycleSpeed) {
+                    // cycled!
+                    // mom, there is an exploit here to refresh at low cycle times and pause rendering.
+                    let cycleCount = Math.floor(currentTime / fishingSpot.currentCycleSpeed)
+
+                    this.onFishingCycle(fishingSpot, cycleCount)
+                    
+                    let leftOver = currentTime % fishingSpot.currentCycleSpeed
+                    fishingSpot.timeElapsed = leftOver
+                    fishingSpot.updateCycleSpeed()
+                } else {
+                    fishingSpot.timeElapsed = currentTime
+                }
+            }
+        })
+    }
+
+    private onFishingCycle(fishingSpot: FishingSpot, cycleCount: number) {
+        console.log("CATCHING FISH!!")
     }
 
     private getDataForSave = (): FishingSaveData => {

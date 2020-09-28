@@ -7,7 +7,7 @@ import {
     MAHOGANY_LOG_ICON,
     YEW_LOG_ICON,
     STICK_LOG_ICON,
-    SHRIMP_NORMAL_ICON
+    SHRIMP_NORMAL_ICON, SHRIMP_MULTI_ICON, SHRIMP_PRAWN_ICON, SHRIMP_PRIME_ICON
 } from '../images/itemImages'
 import { InventoryItem } from '../models/Item'
 
@@ -21,6 +21,9 @@ export const YEW_LOG = 'YEW_LOG'
 export const STICK = 'STICK'
 
 export const SHRIMP_NORMAL = 'SHRIMP_NORMAL'
+export const SHRIMP_PRIME = 'SHRIMP_PRIME'
+export const SHRIMP_PRAWN = 'SHRIMP_PRAWN'
+export const SHRIMP_MULTI = 'SHRIMP_MULTI'
 
 export const itemImages = {
     [OAK_LOG]: OAK_LOG_ICON,
@@ -32,7 +35,10 @@ export const itemImages = {
     [YEW_LOG]: YEW_LOG_ICON,
     [STICK]: STICK_LOG_ICON,
 
-    [SHRIMP_NORMAL]: SHRIMP_NORMAL_ICON
+    [SHRIMP_NORMAL]: SHRIMP_NORMAL_ICON,
+    [SHRIMP_PRIME]: SHRIMP_PRIME_ICON,
+    [SHRIMP_MULTI]: SHRIMP_MULTI_ICON,
+    [SHRIMP_PRAWN]: SHRIMP_PRAWN_ICON,
 }
 
 export const ALL_ITEMS = {
@@ -45,7 +51,10 @@ export const ALL_ITEMS = {
     [MAHOGANY_LOG]: new InventoryItem(MAHOGANY_LOG, 0),
     [YEW_LOG]: new InventoryItem(YEW_LOG, 0),
 
-    [SHRIMP_NORMAL]: new InventoryItem(SHRIMP_NORMAL, 0)
+    [SHRIMP_NORMAL]: new InventoryItem(SHRIMP_NORMAL, 0),
+    [SHRIMP_PRIME]: new InventoryItem(SHRIMP_NORMAL, 0),
+    [SHRIMP_MULTI]: new InventoryItem(SHRIMP_MULTI, 0),
+    [SHRIMP_PRAWN]: new InventoryItem(SHRIMP_PRAWN, 0)
 }
 
 export interface BankItem {

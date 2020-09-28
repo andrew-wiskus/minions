@@ -1,4 +1,5 @@
 import { observable } from 'mobx'
+import { fishingConfig } from '../config/fishingConfig'
 import { treeConfig } from '../config/woodCuttingConfig'
 import { loop } from '../loop'
 import { Resource } from './Tree'
@@ -17,11 +18,18 @@ export class FishingSpot implements Resource {
     @observable public minions
     public achievmentLevel
     public achievmentXp
-    // public levelRequirement
-    // public xpPer
-    // public BASE_TIME_PER_CYCLE
-    // public name
-    // public image
+    public levelRequirement
+    public minCatchSpeed
+    public maxCatchSpeed
+    public treasureChance
+    public rareityModifier
+    public fish_1
+    public fish_2
+    public fish_3
+    public fish_4
+    public name
+
+    public currentCycleSpeed = 1000
 
     constructor(fishingSpot: IFishingSpot) {
         let id = fishingSpot.id
@@ -31,16 +39,18 @@ export class FishingSpot implements Resource {
         this.achievmentLevel = fishingSpot.achievmentLevel
         this.achievmentXp = fishingSpot.achievmentXp
 
-        // this.levelRequirement = treeConfig[id].levelRequirement
-        // this.xpPer = treeConfig[id].xpPer
-        // this.BASE_TIME_PER_CYCLE = treeConfig[id].BASE_TIME_PER_CYCLE
-        // this.name = treeConfig[id].name
-        // this.image = treeConfig[id].image
-    }
+        this.levelRequirement = fishingConfig[id].levelRequirement
+        this.minCatchSpeed = fishingConfig[id].minCatchSpeed
+        this.maxCatchSpeed = fishingConfig[id].maxCatchSpeed
+        this.treasureChance = fishingConfig[id].treasureChance
+        this.rareityModifier = fishingConfig[id].rareityModifier
+        this.fish_1 = fishingConfig[id].fish_1
+        this.fish_2 = fishingConfig[id].fish_2
+        this.fish_3 = fishingConfig[id].fish_3
+        this.fish_4 = fishingConfig[id].fish_4
+        this.name = fishingConfig[id].name
 
-    public getTimePerCycle = () => {
-        // return this.BASE_TIME_PER_CYCLE * minionPercent(this.minions, 0.9)
-        return 1000
+        this.updateCycleSpeed()
     }
 
     public getSaveData(): IFishingSpot {
@@ -57,35 +67,14 @@ export class FishingSpot implements Resource {
         return 32
     }
 
-    getResourceIdForCatch(): string {
-        // let weights = this.fishingSpots.map((x) => x.catchWeight)
-        // let totalWeight = weights.reduce((a, b) => a + b)
-        // let catchRand = Math.random() * totalWeight
-
-        // let total = 0
-        // for (let i = 0; i < weights.length; ++i) {
-        //     // Add the weight to our running total.
-        //     total += weights[i]
-
-        //     // If this value falls within the threshold, we're done!
-        //     if (total >= catchRand) {
-        //         return this.fishingSpots[i].resource_id
-        //     }
-        // }
-
-        return "TODO"
+    public updateCycleSpeed() {
+        let min = this.minCatchSpeed
+        let max = this.maxCatchSpeed
+        let dif = max - min 
+        let cycleSpeed = (Math.random() * dif) + min 
+        this.currentCycleSpeed = cycleSpeed
     }
 
-    rollForTreasure(): Treasure | undefined {
-        // let rand = Math.random() * 100
-        // if (rand < this.config.treasureChance) {
-        //     // todo: build treasure
-        //     return { name: 'holy cow treasure' }
-        // }
-        // return undefined
-
-        return undefined
-    }
 }
 
 function minionPercent(minionCount: number, percentPer: number) {
