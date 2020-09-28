@@ -38,7 +38,8 @@ const styles = {
     bankSlotIcon: {
         height: 45,
         width: 45,
-    },
+        objectFit: 'contain'
+    } as CSSProperties,
     bankSlotValueText: {
         position: 'absolute',
         bottom: -10,

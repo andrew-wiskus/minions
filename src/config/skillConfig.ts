@@ -44,7 +44,7 @@ export let GATHER_SKILLS: GatheringSkill[] = [
     },
     {
         name: 'Fishing',
-        store: 'XX',
+        store: 'fishingStore',
         icon: FishingIcon,
         level: 1,
         background: fishingBG,

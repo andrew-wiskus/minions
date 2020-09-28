@@ -1,9 +1,6 @@
 import React, { CSSProperties } from "react"
 import { MinionCounter } from "../components/woodcutting/ResourcePanel"
-import { ALL_FISHING_SPOTS } from "../config/fishingConfig"
-import { SHRIMP_NORMAL } from "../config/itemConfig"
 import { INNER_COLOR, OUTER_COLOR } from "../constants"
-import { SHRIMP_NORMAL_ICON } from "../images/itemImages"
 import { FishingSpot } from "../models/FishingSpot"
 import LockIcon from '../images/lockIcon.png'
 import { inject, observer } from "mobx-react"
@@ -96,7 +93,7 @@ class FishResourcePanel extends React.Component<{ fishingSpot: FishingSpot, appl
                         <br />
                         speed: {fishingSpot.minCatchSpeed / 1000} - {fishingSpot.maxCatchSpeed / 1000} sec
                         <br />
-                        tresure change: {roundToNearest(fishingSpot.treasureChance * 100, 2)}%
+                        tresure change: {roundToNearest(fishingSpot.treasureChance * 1, 2)}%
                         <br />
                         rareity modifier: {fishingSpot.rareityModifier}
                         <br />
@@ -131,6 +128,7 @@ const styles = {
         backgroundColor: OUTER_COLOR,
         borderRadius: 8,
         position: 'relative',
+        marginBottom: 15,
     } as CSSProperties,
     minionCounterContainer: {
         position: 'absolute',

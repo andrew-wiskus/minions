@@ -7,7 +7,7 @@ import {
     MAHOGANY_LOG_ICON,
     YEW_LOG_ICON,
     STICK_LOG_ICON,
-    SHRIMP_NORMAL_ICON, SHRIMP_MULTI_ICON, SHRIMP_PRAWN_ICON, SHRIMP_PRIME_ICON
+    SHRIMP_NORMAL_ICON, SHRIMP_MULTI_ICON, SHRIMP_GRAND_ICON, SHRIMP_PRIME_ICON, TROUT_HERRING_ICON, TROUT_SALMON_ICON, TROUT_PRIME_ICON, TROUT_TROUT_ICON
 } from '../images/itemImages'
 import { InventoryItem } from '../models/Item'
 
@@ -25,6 +25,11 @@ export const SHRIMP_PRIME = 'SHRIMP_PRIME'
 export const SHRIMP_PRAWN = 'SHRIMP_PRAWN'
 export const SHRIMP_MULTI = 'SHRIMP_MULTI'
 
+export const TROUT_HERRING = 'TROUT_HERRING'
+export const TROUT_PRIME = 'TROUT_PRIME'
+export const TROUT_SALMON = 'TROUT_SALMON'
+export const TROUT_TROUT = 'TROUT_TROUT'
+
 export const itemImages = {
     [OAK_LOG]: OAK_LOG_ICON,
     [WILLOW_LOG]: WILLOW_LOG_ICON,
@@ -38,7 +43,13 @@ export const itemImages = {
     [SHRIMP_NORMAL]: SHRIMP_NORMAL_ICON,
     [SHRIMP_PRIME]: SHRIMP_PRIME_ICON,
     [SHRIMP_MULTI]: SHRIMP_MULTI_ICON,
-    [SHRIMP_PRAWN]: SHRIMP_PRAWN_ICON,
+    [SHRIMP_PRAWN]: SHRIMP_GRAND_ICON,
+
+
+    [TROUT_HERRING]: TROUT_HERRING_ICON,
+    [TROUT_PRIME]: TROUT_PRIME_ICON,
+    [TROUT_SALMON]: TROUT_SALMON_ICON,
+    [TROUT_TROUT]: TROUT_TROUT_ICON,
 }
 
 export const ALL_ITEMS = {
@@ -52,9 +63,14 @@ export const ALL_ITEMS = {
     [YEW_LOG]: new InventoryItem(YEW_LOG, 0),
 
     [SHRIMP_NORMAL]: new InventoryItem(SHRIMP_NORMAL, 0),
-    [SHRIMP_PRIME]: new InventoryItem(SHRIMP_NORMAL, 0),
+    [SHRIMP_PRIME]: new InventoryItem(SHRIMP_PRIME, 0),
     [SHRIMP_MULTI]: new InventoryItem(SHRIMP_MULTI, 0),
-    [SHRIMP_PRAWN]: new InventoryItem(SHRIMP_PRAWN, 0)
+    [SHRIMP_PRAWN]: new InventoryItem(SHRIMP_PRAWN, 0),
+
+    [TROUT_HERRING]: new InventoryItem(TROUT_HERRING, 0),
+    [TROUT_PRIME]: new InventoryItem(TROUT_PRIME, 0),
+    [TROUT_SALMON]: new InventoryItem(TROUT_SALMON, 0),
+    [TROUT_TROUT]: new InventoryItem(TROUT_TROUT, 0),
 }
 
 export interface BankItem {

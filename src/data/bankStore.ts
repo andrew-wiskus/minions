@@ -13,7 +13,6 @@ export class BankStore {
         if (data.items === undefined) {
             return
         }
-
         this.items = data.items.map((x) => new InventoryItem(x.id, x.count))
     }
 

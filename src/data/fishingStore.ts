@@ -1,8 +1,7 @@
-import { time } from "console"
 import { computed, observable } from "mobx"
 import { ALL_FISHING_SPOTS } from "../config/fishingConfig"
-import { treeConfig } from "../config/woodCuttingConfig"
 import { FishingSpot } from "../models/FishingSpot"
+import { getLevelFromEXP, getNextLevelXP } from "../models/levelXpData"
 import { FishingSaveData } from "../models/saveDataModels"
 import { ApplicationStore } from "./applicationStore"
 
@@ -28,6 +27,27 @@ export class FishingStore {
         return count
     }
 
+    
+    @computed
+    public get level(): number {
+        return getLevelFromEXP(this.xp)
+    }
+
+    @computed get nextLevelXp(): number {
+        return getNextLevelXP(this.level)
+    }
+
+    @computed get levelCompletePercent(): number {
+        let prevXP = getNextLevelXP(this.level - 1)
+        let nextXP = getNextLevelXP(this.level)
+
+        let amountMoved = this.xp - prevXP
+        let amountNeeded = nextXP - prevXP
+        let percent = amountMoved / amountNeeded
+
+        return percent * 100
+    }
+    
     @computed
     public get totalMinions() {
         return BASE_MINIONS + this.minionLevel
@@ -61,20 +81,42 @@ export class FishingStore {
     }
 
     private onFishingCycle(fishingSpot: FishingSpot, cycleCount: number) {
-        console.log("CATCHING FISH!!")
+        let caught = fishingSpot.getFishForCatch()
+        this.applicationStore.bankStore.addItemToBank(caught.resource_id, cycleCount)
+        this.xp += caught.xp * cycleCount
     }
 
     private getDataForSave = (): FishingSaveData => {
+        
+        let fishingData = {}
+
+        Object.keys({...this.fishingData}).forEach((key) => {
+            fishingData[key] = this.fishingData[key].getSaveData()
+        })
+
         return {
             taskKey: this.taskKey,
             minionLevel: this.minionLevel,
             xp: this.xp,
-            fishingData: this.fishingData
+            fishingData: fishingData
         }
     }
 
     private loadData = (data: FishingSaveData) => {
-        console.log("loading: ", data)
+        if(data === undefined || Object.keys(data).length === 0) {
+            return 
+        }
+
+        this.minionLevel = data.minionLevel || 0
+        this.xp = data.xp || 0
+
+        Object.keys(this.fishingData).forEach(key => {
+            let fishingData = {}
+            Object.keys(data.fishingData).forEach(k => {
+                fishingData[k] = new FishingSpot(data.fishingData[k])
+            })
+            this.fishingData = fishingData
+        })
     }
 
     public incMinion(key: string, amount: number) {

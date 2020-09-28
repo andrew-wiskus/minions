@@ -1,6 +1,5 @@
 import { observable } from 'mobx'
-import { fishingConfig } from '../config/fishingConfig'
-import { treeConfig } from '../config/woodCuttingConfig'
+import { FishCatchConfig, fishingConfig } from '../config/fishingConfig'
 import { loop } from '../loop'
 import { roundToNearest } from '../pages/FishingPage'
 import { Resource } from './Tree'
@@ -24,10 +23,10 @@ export class FishingSpot implements Resource {
     public BASE_maxCatchSpeed
     public treasureChance
     public rareityModifier
-    public fish_1
-    public fish_2
-    public fish_3
-    public fish_4
+    public fish_1: FishCatchConfig
+    public fish_2: FishCatchConfig
+    public fish_3: FishCatchConfig
+    public fish_4: FishCatchConfig
     public name
 
     public currentCycleSpeed = 1000
@@ -78,6 +77,31 @@ export class FishingSpot implements Resource {
         let cycleSpeed = (Math.random() * dif) + min 
         this.currentCycleSpeed = cycleSpeed
     }
+
+    public getFishForCatch = () => {
+        let fishingSpots = [this.fish_1, this.fish_2, this.fish_3, this.fish_4].filter(x => x !== undefined)
+        
+        let total = 1;
+        for (let i = 0; i < fishingSpots.length; ++i) {
+            total += fishingSpots[i].catchWeight
+        }
+
+        const threshold = Math.floor(Math.random() * total);
+
+
+        let weightCheckThreshold = 0;
+        for (let i = 0; i < fishingSpots.length; ++i) {
+            // Add the weight to our running weightTotal.
+            weightCheckThreshold += fishingSpots[i].catchWeight
+
+            // If this value falls within the threshold, we're done!
+            if (weightCheckThreshold >= threshold) {
+                return fishingSpots[i];
+            }
+        }
+    }
+
+
 }
 
 function minionPercent(minionCount: number, percentPer: number) {

@@ -29,6 +29,7 @@ export class GameBar extends React.Component<{ onClickRoute: (route: string) => 
                     justifyContent: 'center',
                     alignItems: 'center',
                     flexDirection: 'column',
+                    backgroundColor: OUTER_COLOR,
                     borderBottom: '10px solid ' + OUTER_COLOR,
                 }}
             >

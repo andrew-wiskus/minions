@@ -28,14 +28,17 @@ export class ApplicationStore {
             return {}
         }
 
+
         let data = JSON.parse(atob(encodedData))
+        // console.log("LOADING: " + taskKey, data)
+
         return data
     }
 
     public saveData = () => {
         Object.keys(this.saveFunctions).forEach((taskKey) => {
             let data = this.saveFunctions[taskKey]()
-            console.log('SAVING ' + taskKey + ': ', data)
+            // console.log('SAVING ' + taskKey + ': ', data)
             let encoded = btoa(JSON.stringify(data))
             localStorage.setItem(taskKey, encoded)
         })
