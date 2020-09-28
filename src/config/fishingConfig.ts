@@ -8,8 +8,8 @@ const FISH_LOCATION_SHRIMPY_COVE = 'SHRIMPY_COVE'
 export const fishingConfig = {
     [FISH_LOCATION_SHRIMPY_COVE]: {
         levelRequirement: 0,
-        minCatchSpeed: 1200,
-        maxCatchSpeed: 5300,
+        BASE_minCatchSpeed: 1200,
+        BASE_maxCatchSpeed: 5300,
         treasureChance: 0.14,
         rareityModifier: 22,
         id: FISH_LOCATION_SHRIMPY_COVE,

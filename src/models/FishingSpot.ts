@@ -2,6 +2,7 @@ import { observable } from 'mobx'
 import { fishingConfig } from '../config/fishingConfig'
 import { treeConfig } from '../config/woodCuttingConfig'
 import { loop } from '../loop'
+import { roundToNearest } from '../pages/FishingPage'
 import { Resource } from './Tree'
 
 export interface IFishingSpot {
@@ -19,8 +20,8 @@ export class FishingSpot implements Resource {
     public achievmentLevel
     public achievmentXp
     public levelRequirement
-    public minCatchSpeed
-    public maxCatchSpeed
+    public BASE_minCatchSpeed
+    public BASE_maxCatchSpeed
     public treasureChance
     public rareityModifier
     public fish_1
@@ -31,6 +32,13 @@ export class FishingSpot implements Resource {
 
     public currentCycleSpeed = 1000
 
+    public get minCatchSpeed() {
+        return roundToNearest(this.BASE_minCatchSpeed * minionPercent(this.minions, 0.94),0)
+    }
+
+    public get maxCatchSpeed() {
+        return roundToNearest(this.BASE_maxCatchSpeed * minionPercent(this.minions, 0.96), 0)
+    }
     constructor(fishingSpot: IFishingSpot) {
         let id = fishingSpot.id
         this.id = fishingSpot.id
@@ -40,8 +48,8 @@ export class FishingSpot implements Resource {
         this.achievmentXp = fishingSpot.achievmentXp
 
         this.levelRequirement = fishingConfig[id].levelRequirement
-        this.minCatchSpeed = fishingConfig[id].minCatchSpeed
-        this.maxCatchSpeed = fishingConfig[id].maxCatchSpeed
+        this.BASE_minCatchSpeed = fishingConfig[id].BASE_minCatchSpeed
+        this.BASE_maxCatchSpeed = fishingConfig[id].BASE_maxCatchSpeed
         this.treasureChance = fishingConfig[id].treasureChance
         this.rareityModifier = fishingConfig[id].rareityModifier
         this.fish_1 = fishingConfig[id].fish_1
@@ -63,10 +71,6 @@ export class FishingSpot implements Resource {
         }
     }
 
-    public avgExpPerHour(): number {
-        return 32
-    }
-
     public updateCycleSpeed() {
         let min = this.minCatchSpeed
         let max = this.maxCatchSpeed
@@ -74,7 +78,6 @@ export class FishingSpot implements Resource {
         let cycleSpeed = (Math.random() * dif) + min 
         this.currentCycleSpeed = cycleSpeed
     }
-
 }
 
 function minionPercent(minionCount: number, percentPer: number) {

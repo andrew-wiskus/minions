@@ -32,10 +32,11 @@ export class FishingPage extends React.Component<{applicationStore?: Application
         )
     }
 }
-
+@inject('applicationStore')
 @observer
-class FishResourcePanel extends React.Component<{ fishingSpot: FishingSpot }> {
+class FishResourcePanel extends React.Component<{ fishingSpot: FishingSpot, applicationStore?: ApplicationStore }> {
     public render() {
+        let store = this.props.applicationStore!.fishingStore 
         let fishingSpot = this.props.fishingSpot
         let progressPercent = Math.floor((fishingSpot.timeElapsed / fishingSpot.currentCycleSpeed) * 100)
         
@@ -72,7 +73,8 @@ class FishResourcePanel extends React.Component<{ fishingSpot: FishingSpot }> {
                     <MinionCounter
                         resource={this.props.fishingSpot}
                         onChangeMinion={(inc: number) => {
-                                // STORE.INCMINION
+                            //   this.props.fishingSpot.incMinion(inc)
+                            store.incMinion(this.props.fishingSpot.id, inc)
                         }}
                     />
                 </div>
@@ -92,8 +94,7 @@ class FishResourcePanel extends React.Component<{ fishingSpot: FishingSpot }> {
                             {fishingSpot.name}
                         </span>{' '}
                         <br />
-                        catch speed: {fishingSpot.minCatchSpeed / 1000} - {fishingSpot.maxCatchSpeed / 1000} sec <br />
-                        exp/hr: {fishingSpot.avgExpPerHour()}
+                        speed: {fishingSpot.minCatchSpeed / 1000} - {fishingSpot.maxCatchSpeed / 1000} sec
                         <br />
                         tresure change: {roundToNearest(fishingSpot.treasureChance * 100, 2)}%
                         <br />
@@ -110,7 +111,7 @@ class FishResourcePanel extends React.Component<{ fishingSpot: FishingSpot }> {
     }
 }
 
-function roundToNearest(num, places) {
+export function roundToNearest(num, places) {
     var multiplier = Math.pow(10, places)
     return Math.round(num * multiplier) / multiplier
 }

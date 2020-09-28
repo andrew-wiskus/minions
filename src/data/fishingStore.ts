@@ -1,5 +1,5 @@
 import { time } from "console"
-import { observable } from "mobx"
+import { computed, observable } from "mobx"
 import { ALL_FISHING_SPOTS } from "../config/fishingConfig"
 import { treeConfig } from "../config/woodCuttingConfig"
 import { FishingSpot } from "../models/FishingSpot"
@@ -16,6 +16,22 @@ export class FishingStore {
     @observable public fishingData: { [fishingSpotKey: string]: FishingSpot} = {}
     @observable public minionLevel = 0
     @observable public xp = 0
+
+    @computed
+    public get usedMinions(): number {
+        let count = 0
+
+        Object.keys(this.fishingData).forEach((key) => {
+            count += this.fishingData[key].minions
+        })
+
+        return count
+    }
+
+    @computed
+    public get totalMinions() {
+        return BASE_MINIONS + this.minionLevel
+    }
 
     private onUpdate = (timeDelta: number) => {
         // console.log("updating: ", timeDelta)
@@ -59,6 +75,25 @@ export class FishingStore {
 
     private loadData = (data: FishingSaveData) => {
         console.log("loading: ", data)
+    }
+
+    public incMinion(key: string, amount: number) {
+        let fishingSpot = this.fishingData[key]
+        if (fishingSpot === undefined) {
+            throw Error('fishingSpot queried but none found')
+        }
+
+        let count = fishingSpot.minions + amount
+        let availableMinions = this.totalMinions - this.usedMinions
+
+        if (amount > availableMinions) {
+            alert("you don't have enough minions. craft more")
+            return
+        }
+
+        if (count >= 0) {
+            fishingSpot.minions = count
+        }
     }
 
     constructor(applicationStore: ApplicationStore) {
