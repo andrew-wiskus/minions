@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
 import MinionImage from '../images/minion.png'
-import { INNER_COLOR, LEVEL_GREEN, OUTER_COLOR } from '../constants'
+import { INNER_COLOR, OUTER_COLOR } from '../constants'
 import { inject, observer } from 'mobx-react'
 import { ApplicationStore } from '../data/applicationStore'
 import { truncLargeNumber } from '../models/levelXpData'
