@@ -8,6 +8,14 @@ export interface WoodCuttingSaveData {
     xp: number
 }
 
+
+export interface MiningSaveData {
+    taskKey: string
+    minionLevel: number
+    miningData: { [key: string]: ITree }
+    xp: number
+}
+
 export interface FishingSaveData {
     taskKey: string
     minionLevel: number

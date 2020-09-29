@@ -12,19 +12,20 @@ import { Resource, Tree } from '../../models/Tree'
 @observer
 export class ResourcePanel extends React.Component<{
     wcKey: string
-    tree: Tree
+    resource: Tree
     applicationStore?: ApplicationStore
     onChangeMinion: (inc: number) => void
+    level: number
 }> {
     public render() {
-        let tree = this.props.tree
-        let cycleTime = tree.getTimePerCycle()
-        let xpPerSecondText = `${tree.xpPer}xp / ${Math.floor(cycleTime / 100) / 10} sec`
-        let progressPercent = (tree.timeElapsed / cycleTime) * 100 + '%'
-        let notLevelRequired = this.props.applicationStore!.woodcuttingStore.level < tree.levelRequirement
+        let resource = this.props.resource
+        let cycleTime = resource.getTimePerCycle()
+        let xpPerSecondText = `${resource.xpPer}xp / ${Math.floor(cycleTime / 100) / 10} sec`
+        let progressPercent = (resource.timeElapsed / cycleTime) * 100 + '%'
+        let notLevelRequired = this.props.level < resource.levelRequirement
         let containerStyle = {
             opacity: notLevelRequired ? 0.6 : 1,
-            borderTop: tree.minions === 0 ? '10px solid grey' : styles.containerBox.borderTop,
+            borderTop: resource.minions === 0 ? '10px solid grey' : styles.containerBox.borderTop,
         }
 
         return (
@@ -37,9 +38,9 @@ export class ResourcePanel extends React.Component<{
 
                 <div style={styles.headerContainer}>
                     <div style={styles.nameAndIconContainer}>
-                        <p style={styles.treeNameText}>{`${tree.name}`}</p>
+                        <p style={styles.resourceNameText}>{`${resource.name}`}</p>
 
-                        <img alt="todo" src={tree.image} style={styles.treeIcon} />
+                        <img alt="todo" src={resource.image} style={styles.resourceIcon} />
                     </div>
                     <p style={styles.xpPerSecondText}>{`${xpPerSecondText}`}</p>
 
@@ -49,7 +50,7 @@ export class ResourcePanel extends React.Component<{
                 </div>
 
                 <div style={styles.triButtonContainer}>
-                    <MinionCounter onChangeMinion={this.props.onChangeMinion} resource={tree} />
+                    <MinionCounter onChangeMinion={this.props.onChangeMinion} resource={resource} />
 
                     <div style={styles.triButton}>
                         <img alt="todo" src={LockIcon} style={styles.lockIconSmall} />
@@ -115,7 +116,7 @@ const styles = {
         height: 30,
         backgroundColor: '#383e48',
     },
-    treeNameText: {
+    resourceNameText: {
         color: 'white',
         paddingTop: 6,
     } as CSSProperties,
@@ -213,7 +214,7 @@ const styles = {
         marginLeft: -40,
         marginTop: -10,
     } as CSSProperties,
-    treeIcon: {
+    resourceIcon: {
         height: 70,
         width: 70,
         objectFit: 'contain',

@@ -18,6 +18,7 @@ export enum PageRoute {
     BANK = 'BANK',
     FISHING = 'FISHING',
     TODO = 'TODO',
+    MINING = 'MINING',
 }
 
 export interface GatheringSkill {
@@ -54,12 +55,14 @@ export let GATHER_SKILLS: GatheringSkill[] = [
     },
     {
         name: 'Mining',
-        store: 'XX',
+        store: 'miningStore',
         icon: MiningIcon,
         level: 1,
         currentLevel: 1,
+        background: fishingBG,
         xp: 0,
-        onClickRoute: 'Mining',
+        onClickRoute: PageRoute.MINING,
+
     },
     {
         name: 'Farming',

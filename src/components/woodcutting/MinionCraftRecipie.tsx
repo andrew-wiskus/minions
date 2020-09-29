@@ -5,10 +5,10 @@ import React from 'react'
 
 @inject('applicationStore')
 @observer
-export class MinionCraftRecipie extends React.Component<{ applicationStore?: ApplicationStore }> {
+export class MinionCraftRecipie extends React.Component<{ applicationStore?: ApplicationStore, recipie: any }> {
     public render() {
         const store = this.props.applicationStore!
-        const recipie = store.woodcuttingStore.nextMinionCraft
+        const recipie = this.props.recipie
 
         return (
             <>

@@ -13,10 +13,10 @@ let headerRatio = 198 / 826
 let headerWidth = 470
 @inject('applicationStore')
 @observer
-export class WoodCuttingPage extends React.Component<{ applicationStore?: ApplicationStore }> {
+export class MiningPage extends React.Component<{ applicationStore?: ApplicationStore }> {
     public render() {
-        let store = this.props.applicationStore!.woodcuttingStore
-        let allTreeData = store.treeData
+        let store = this.props.applicationStore!.miningStore
+        let allMiningData = store.miningData
         let xpText = `${truncLargeNumber(store.xp, 1)}/${truncLargeNumber(store.nextLevelXp, 1)}`
 
         return (
@@ -26,7 +26,7 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
                         <div style={styles.skillInfoContainer}>
                             {/* SKILL HEADER TEXT */}
                             <p style={styles.headerText}>
-                                <span style={{ fontSize: 25 }}>woodcutting</span>
+                                <span style={{ fontSize: 25 }}>mining</span>
                                 <br />
                                 level: {store.level}
                                 <br />
@@ -38,7 +38,7 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
                             <div style={styles.xpProgressBarContainer}>
                                 <div
                                     style={{
-                                        backgroundColor: LEVEL_GREEN,
+                                        backgroundColor: "grey",
                                         width: store.levelCompletePercent + '%',
                                         height: 30,
                                     }}
@@ -52,7 +52,7 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
                         <div>
                             <div style={styles.minionCraftContainer}>
                                 <div style={styles.minionCraftRecipie}>
-                                    <MinionCraftRecipie recipie={this.props.applicationStore!.woodcuttingStore.nextMinionCraft} />
+                                    <MinionCraftRecipie recipie={this.props.applicationStore!.miningStore.nextMinionCraft}/>
                                 </div>
                                 <img alt="todo" style={styles.minionIcon} src={MinionImage} />
                                 <div style={styles.craftMinionButton}>
@@ -71,15 +71,15 @@ export class WoodCuttingPage extends React.Component<{ applicationStore?: Applic
                 </div>
 
                 <div style={styles.pageBackground}>
-                    {Object.keys(allTreeData).map((key, i) => {
-                        let tree: any = allTreeData[key]
+                    {Object.keys(allMiningData).map((key, i) => {
+                        let miningSpot: any = allMiningData[key]
                         return (
                             <ResourcePanel
                                 key={i}
                                 wcKey={key}
-                                resource={tree}
-                                onChangeMinion={(inc: number) => store.incMinionToTree(key, inc)}
-                                level={this.props.applicationStore!.woodcuttingStore.level}
+                                resource={miningSpot}
+                                level={this.props.applicationStore!.miningStore.level}
+                                onChangeMinion={(inc: number) => store.incMinionToMining(key, inc)}
                             />
                         )
                     })}

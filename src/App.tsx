@@ -6,6 +6,7 @@ import { PageRoute, GATHER_SKILLS } from './config/skillConfig'
 import { GameBar } from './components/navigation/NavBar'
 
 import { FishingPage } from './pages/FishingPage'
+import { MiningPage } from './pages/MiningPage'
 
 
 interface State {
@@ -14,7 +15,7 @@ interface State {
 
 export class App extends React.Component<{}, State> {
     public state: State = {
-        currentPage: PageRoute.FISHING,
+        currentPage: PageRoute.MINING,
     }
 
     private getBigForSkill = () => {
@@ -48,6 +49,7 @@ export class App extends React.Component<{}, State> {
                 <GameBar onClickRoute={(route: PageRoute) => this.setState({ currentPage: route })} />
                 {this.state.currentPage === PageRoute.WOODCUTTING && <WoodCuttingPage />}
                 {this.state.currentPage === PageRoute.FISHING && <FishingPage />}
+                {this.state.currentPage === PageRoute.MINING && <MiningPage />}
                 {this.state.currentPage === PageRoute.BANK && <BankPage />}
             </div>
         )
