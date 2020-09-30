@@ -17,21 +17,23 @@ import TROUT_HERRING_IMAGE from './fish/herring.png'
 import TROUT_TROUT_IMAGE from './fish/leaping_trout.png'
 import TROUT_PRIME_IMAGE from './fish/trout.png'
 
-import COPPER_ORE_IMAGE from './logs_stick.png'
-import TIN_ORE_IMAGE from './logs_stick.png'
-import IRON_ORE_IMAGE from './logs_stick.png'
-import COAL_ORE_IMAGE from './logs_stick.png'
-import MITHRIL_ORE_IMAGE from './logs_stick.png'
-import ADAMANTITE_ORE_IMAGE from './logs_stick.png'
-import LUMINITE_ORE_IMAGE from './logs_stick.png'
-import RUNITE_ORE_IMAGE from './logs_stick.png'
-import ORICHALCITE_ORE_IMAGE from './logs_stick.png'
-import DRAKOLITH_ORE_IMAGE from './logs_stick.png'
-import NECRITE_ORE_IMAGE from './logs_stick.png'
-import PHASMATITE_ORE_IMAGE from './logs_stick.png'
-import BANITE_ORE_IMAGE from './logs_stick.png'
-import LIGHT_ANIMICA_IMAGE from './logs_stick.png'
-import DARK_ANIMICA_IMAGE from './logs_stick.png'
+import COPPER_ORE_IMAGE from './ores/COPPER.png'
+import TIN_ORE_IMAGE from './ores/TIN.png'
+import IRON_ORE_IMAGE from './ores/IRON.png'
+import COAL_ORE_IMAGE from './ores/COAL.png'
+import MITHRIL_ORE_IMAGE from './ores/MITHRIL.png'
+import ADAMANTITE_ORE_IMAGE from './ores/ADAMANT.png'
+import LUMINITE_ORE_IMAGE from './ores/LUMINITE.png'
+import RUNITE_ORE_IMAGE from './ores/RUNITE.png'
+import ORICHALCITE_ORE_IMAGE from './ores/ORICHALCITE.png'
+import DRAKOLITH_ORE_IMAGE from './ores/DRAKOLITH.png'
+import NECRITE_ORE_IMAGE from './ores/NECRITE.png'
+import PHASMATITE_ORE_IMAGE from './ores/PHASMATITE.png'
+import BANITE_ORE_IMAGE from './ores/BANITE.png'
+import LIGHT_ANIMICA_IMAGE from './ores/LIGHT_ANIMICA.png'
+import DARK_ANIMICA_IMAGE from './ores/DARK_ANIMICA.png'
+import SILVER_ORE_IMAGE from './ores/SILVER.png'
+import GOLD_ORE_IMAGE from './ores/GOLD.png'
 
 export const OAK_LOG_ICON = OAK_LOG_IMAGE
 export const WILLOW_LOG_ICON = WILLOW_LOG_IMAGE
@@ -58,6 +60,8 @@ export const IRON_ORE_ICON = IRON_ORE_IMAGE
 export const COAL_ORE_ICON = COAL_ORE_IMAGE
 export const MITHRIL_ORE_ICON = MITHRIL_ORE_IMAGE
 export const ADAMANTITE_ORE_ICON = ADAMANTITE_ORE_IMAGE
+export const GOLD_ORE_ICON = GOLD_ORE_IMAGE 
+export const SILVER_ORE_ICON = SILVER_ORE_IMAGE
 export const LUMINITE_ORE_ICON = LUMINITE_ORE_IMAGE
 export const RUNITE_ORE_ICON = RUNITE_ORE_IMAGE
 export const ORICHALCITE_ORE_ICON = ORICHALCITE_ORE_IMAGE

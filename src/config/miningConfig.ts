@@ -1,12 +1,12 @@
-import { ADAMANTITE_ORE_ICON, BANITE_ORE_ICON, COAL_ORE_ICON, COPPER_ORE_ICON, DARK_ANIMICA_ICON, DRAKOLITH_ORE_ICON, IRON_ORE_ICON, LIGHT_ANIMICA_ICON, LUMINITE_ORE_ICON, MITHRIL_ORE_ICON, NECRITE_ORE_ICON, ORICHALCITE_ORE_ICON, PHASMATITE_ORE_ICON, RUNITE_ORE_ICON, TIN_ORE_ICON } from '../images/itemImages'
+import { ADAMANTITE_ORE_ICON, BANITE_ORE_ICON, COAL_ORE_ICON, COPPER_ORE_ICON, DARK_ANIMICA_ICON, DRAKOLITH_ORE_ICON, GOLD_ORE_ICON, IRON_ORE_ICON, LIGHT_ANIMICA_ICON, LUMINITE_ORE_ICON, MITHRIL_ORE_ICON, NECRITE_ORE_ICON, ORICHALCITE_ORE_ICON, PHASMATITE_ORE_ICON, RUNITE_ORE_ICON, SILVER_ORE_ICON, TIN_ORE_ICON } from '../images/itemImages'
 import { MiningSpot } from '../models/MiningSpot'
-import { COPPER_ORE, TIN_ORE, IRON_ORE, COAL_ORE, MITHRIL_ORE, ADAMANTITE_ORE, LUMINITE_ORE, RUNITE_ORE, ORICHALCITE_ORE, DRAKOLITH_ORE, NECRITE_ORE, PHASMATITE_ORE, BANITE_ORE, LIGHT_ANIMICA, DARK_ANIMICA, STICK, OAK_LOG, WILLOW_LOG } from './itemConfig'
+import { COPPER_ORE, TIN_ORE, IRON_ORE, COAL_ORE, MITHRIL_ORE, ADAMANTITE_ORE, LUMINITE_ORE, RUNITE_ORE, ORICHALCITE_ORE, DRAKOLITH_ORE, NECRITE_ORE, PHASMATITE_ORE, BANITE_ORE, LIGHT_ANIMICA, DARK_ANIMICA, STICK, OAK_LOG, WILLOW_LOG, GOLD_ORE, SILVER_ORE } from './itemConfig'
 
 export const miningConfig = {
     [COPPER_ORE]: {
         levelRequirement: 1,
         xpPer: 10,
-        BASE_TIME_PER_CYCLE: 7000,
+        BASE_TIME_PER_CYCLE: 3000,
         name: 'COPPER_ORE',
         image: COPPER_ORE_ICON,
     },
@@ -38,6 +38,13 @@ export const miningConfig = {
         name: 'MITHRIL_ORE',
         image: MITHRIL_ORE_ICON,
     },
+    [SILVER_ORE]: {
+        levelRequirement: 30,
+        xpPer: 40,
+        BASE_TIME_PER_CYCLE: 27000,
+        name: 'SILVER_ORE',
+        image: SILVER_ORE_ICON,
+    },
     [ADAMANTITE_ORE]: {
         levelRequirement: 40,
         xpPer: 60,
@@ -58,6 +65,13 @@ export const miningConfig = {
         BASE_TIME_PER_CYCLE: 60000,
         name: 'RUNITE_ORE',
         image: RUNITE_ORE_ICON,
+    },
+    [GOLD_ORE]: {
+        levelRequirement: 50,
+        xpPer: 100,
+        BASE_TIME_PER_CYCLE: 60000,
+        name: 'GOLD_ORE',
+        image: GOLD_ORE_ICON,
     },
     [ORICHALCITE_ORE]: {
         levelRequirement: 60,
@@ -115,10 +129,12 @@ export const ALL_MINING_SPOTS = {
     TIN_ORE: new MiningSpot({resource_id: TIN_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
     IRON_ORE: new MiningSpot({resource_id: IRON_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
     COAL_ORE: new MiningSpot({resource_id: COAL_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
+    SILVER_ORE: new MiningSpot({resource_id: SILVER_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
     MITHRIL_ORE: new MiningSpot({resource_id: MITHRIL_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
     ADAMANTITE_ORE: new MiningSpot({resource_id: ADAMANTITE_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
     LUMINITE_ORE: new MiningSpot({resource_id: LUMINITE_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
     RUNITE_ORE: new MiningSpot({resource_id: RUNITE_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
+    GOLD_ORE: new MiningSpot({resource_id: GOLD_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
     ORICHALCITE_ORE: new MiningSpot({resource_id: ORICHALCITE_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
     DRAKOLITH_ORE: new MiningSpot({resource_id: DRAKOLITH_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),
     NECRITE_ORE: new MiningSpot({resource_id: NECRITE_ORE, timeElapsed: 0, minions: 0, achievmentLevel: 1, achievmentXp: 0}),

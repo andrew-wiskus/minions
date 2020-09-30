@@ -71,7 +71,7 @@ export class ApplicationStore {
     }
 
     constructor() {
-        // localStorage.clear()
+        localStorage.clear()
         this.loopOnRender()
     }
 }

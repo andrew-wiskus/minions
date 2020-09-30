@@ -1,6 +1,6 @@
 import { inject, observer } from 'mobx-react'
 import React, { CSSProperties } from 'react'
-import { LEVEL_GREEN } from '../../constants'
+import { INNER_COLOR, LEVEL_GREEN } from '../../constants'
 import { ApplicationStore } from '../../data/applicationStore'
 import LockIcon from '../../images/lockIcon.png'
 import MinionImage from '../../images/minion.png'
@@ -215,9 +215,12 @@ const styles = {
         marginTop: -10,
     } as CSSProperties,
     resourceIcon: {
-        height: 70,
-        width: 70,
+        height: 60,
+        width: 60,
         objectFit: 'contain',
-        marginRight: 0,
+        marginRight: -60,
+        backgroundColor: INNER_COLOR,
+        borderRadius: 8,
+        padding: 5
     } as CSSProperties,
 }
