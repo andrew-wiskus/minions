@@ -1,17 +1,18 @@
-import FarmingIcon from '../images/FarmingIcon.png'
-import FishingIcon from '../images/FishingIcon.png'
-import WoodcuttingIcon from '../images/WoodcuttingIcon.png'
-import HuntingIcon from '../images/HuntingIcon.png'
-import MiningIcon from '../images/MiningIcon.png'
-import DivinationIcon from '../images/DivinationIcon.png'
-import ArtifactDiggingIcon from '../images/ArtifactDiggingIcon.png'
-import GemMiningIcon from '../images/GemMiningIcon.png'
-import ForagingIcon from '../images/ForagingIcon.png'
-import EssenceGatheringIcon from '../images/EssenceGatheringIcon.png'
-import StudyIcon from '../images/StudyIcon.png'
-import DiplomacyIcon from '../images/DiplomacyIcon.png'
-import woodCutBG from '../images/woodcut_bg.png'
-import fishingBG from '../images/FishingBG.png'
+import FarmingIcon from '../images/FarmingIcon.png';
+import FishingIcon from '../images/FishingIcon.png';
+import WoodcuttingIcon from '../images/WoodcuttingIcon.png';
+import HuntingIcon from '../images/HuntingIcon.png';
+import MiningIcon from '../images/MiningIcon.png';
+import DivinationIcon from '../images/DivinationIcon.png';
+import ArtifactDiggingIcon from '../images/ArtifactDiggingIcon.png';
+import GemMiningIcon from '../images/GemMiningIcon.png';
+import ForagingIcon from '../images/ForagingIcon.png';
+import EssenceGatheringIcon from '../images/EssenceGatheringIcon.png';
+import StudyIcon from '../images/StudyIcon.png';
+import DiplomacyIcon from '../images/DiplomacyIcon.png';
+import woodCutBG from '../images/woodcut_bg.png';
+import fishingBG from '../images/FishingBG.png';
+import farmingBG from '../images/farmingBG.png';
 
 export enum PageRoute {
     WOODCUTTING = 'WOODCUTTING',
@@ -19,17 +20,18 @@ export enum PageRoute {
     FISHING = 'FISHING',
     TODO = 'TODO',
     MINING = 'MINING',
+    FARMING = 'FARMING',
 }
 
 export interface GatheringSkill {
-    name: string
-    icon: string
-    store: string
-    level: number
-    currentLevel: number
-    xp: number
-    onClickRoute: string
-    background?: string
+    name: string;
+    icon: string;
+    store: string;
+    level: number;
+    currentLevel: number;
+    xp: number;
+    onClickRoute: string;
+    background?: string;
 }
 
 export let GATHER_SKILLS: GatheringSkill[] = [
@@ -62,16 +64,16 @@ export let GATHER_SKILLS: GatheringSkill[] = [
         background: fishingBG,
         xp: 0,
         onClickRoute: PageRoute.MINING,
-
     },
     {
         name: 'Farming',
         store: 'XX',
+        background: farmingBG,
         icon: FarmingIcon,
         level: 1,
         currentLevel: 1,
         xp: 0,
-        onClickRoute: 'Farming',
+        onClickRoute: PageRoute.FARMING,
     },
     {
         name: 'Hunting ',
@@ -145,4 +147,4 @@ export let GATHER_SKILLS: GatheringSkill[] = [
         xp: 0,
         onClickRoute: 'Study',
     },
-]
+];

@@ -7,6 +7,7 @@ import { GameBar } from './components/navigation/NavBar'
 
 import { FishingPage } from './pages/FishingPage'
 import { MiningPage } from './pages/MiningPage'
+import { FarmingPage } from './pages/FarmingPage'
 
 
 interface State {
@@ -15,7 +16,7 @@ interface State {
 
 export class App extends React.Component<{}, State> {
     public state: State = {
-        currentPage: PageRoute.MINING,
+        currentPage: PageRoute.FARMING,
     }
 
     private getBigForSkill = () => {
@@ -50,6 +51,7 @@ export class App extends React.Component<{}, State> {
                 {this.state.currentPage === PageRoute.WOODCUTTING && <WoodCuttingPage />}
                 {this.state.currentPage === PageRoute.FISHING && <FishingPage />}
                 {this.state.currentPage === PageRoute.MINING && <MiningPage />}
+                {this.state.currentPage === PageRoute.FARMING && <FarmingPage />}
                 {this.state.currentPage === PageRoute.BANK && <BankPage />}
             </div>
         )
