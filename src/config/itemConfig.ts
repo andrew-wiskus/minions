@@ -7,48 +7,139 @@ import {
     MAHOGANY_LOG_ICON,
     YEW_LOG_ICON,
     STICK_LOG_ICON,
-    SHRIMP_NORMAL_ICON, SHRIMP_MULTI_ICON, SHRIMP_GRAND_ICON, SHRIMP_PRIME_ICON, TROUT_HERRING_ICON, TROUT_SALMON_ICON, TROUT_PRIME_ICON, TROUT_TROUT_ICON, ADAMANTITE_ORE_ICON, BANITE_ORE_ICON, COAL_ORE_ICON, COPPER_ORE_ICON, DARK_ANIMICA_ICON, DRAKOLITH_ORE_ICON, IRON_ORE_ICON, LIGHT_ANIMICA_ICON, LUMINITE_ORE_ICON, MITHRIL_ORE_ICON, NECRITE_ORE_ICON, ORICHALCITE_ORE_ICON, PHASMATITE_ORE_ICON, RUNITE_ORE_ICON, TIN_ORE_ICON, GOLD_ORE_ICON, SILVER_ORE_ICON
-} from '../images/itemImages'
-import { InventoryItem } from '../models/Item'
+    SHRIMP_NORMAL_ICON,
+    SHRIMP_MULTI_ICON,
+    SHRIMP_GRAND_ICON,
+    SHRIMP_PRIME_ICON,
+    TROUT_HERRING_ICON,
+    TROUT_SALMON_ICON,
+    TROUT_PRIME_ICON,
+    TROUT_TROUT_ICON,
+    ADAMANTITE_ORE_ICON,
+    BANITE_ORE_ICON,
+    COAL_ORE_ICON,
+    COPPER_ORE_ICON,
+    DARK_ANIMICA_ICON,
+    DRAKOLITH_ORE_ICON,
+    IRON_ORE_ICON,
+    LIGHT_ANIMICA_ICON,
+    LUMINITE_ORE_ICON,
+    MITHRIL_ORE_ICON,
+    NECRITE_ORE_ICON,
+    ORICHALCITE_ORE_ICON,
+    PHASMATITE_ORE_ICON,
+    RUNITE_ORE_ICON,
+    TIN_ORE_ICON,
+    GOLD_ORE_ICON,
+    SILVER_ORE_ICON,
+    ARBUCK_SEED_ICON,
+    AVACADO_SEED_ICON,
+    AVANTOE_SEED_ICON,
+    BAR_BERRY_SEED_ICON,
+    BLOODWEED_SEED_ICON,
+    CABBAGE_SEED_ICON,
+    CADANTINE_SEED_ICON,
+    CADAVA_BERRY_SEED_ICON,
+    CORN_SEED_ICON,
+    DWARF_WEED_SEED_ICON,
+    DWELL_BERRY_SEED_ICON,
+    FELLSTALK_SEED_ICON,
+    GUAM_SEED_ICON,
+    HARRALANDER_SEED_ICON,
+    IRIT_SEED_ICON,
+    JANGER_BERRY_SEED_ICON,
+    KWUARM_SEED_ICON,
+    LANTADYME_SEED_ICON,
+    LYCHEE_SEED_ICON,
+    MANGO_SEED_ICON,
+    MARRENTILL_SEED_ICON,
+    ONION_SEED_ICON,
+    POTATO_SEED_ICON,
+    RANARR_SEED_ICON,
+    RED_BERRY_SEED_ICON,
+    SNAPDRAGON_SEED_ICON,
+    STRAWBERRY_SEED_ICON,
+    TARROMIN_SEED_ICON,
+    TOADFLAX_SEED_ICON,
+    TOMATO_SEED_ICON,
+    TORSTOL_SEED_ICON,
+    WATERMELON_SEED_ICON,
+    WERGALI_SEED_ICON,
+    WHITE_BERRY_SEED_ICON,
+} from '../images/itemImages';
+import { InventoryItem } from '../models/Item';
 
-export const OAK_LOG = 'OAK_LOG'
-export const WILLOW_LOG = 'WILLOW_LOG'
-export const TEAK_LOG = 'TEAK_LOG'
-export const MAGIC_LOG = 'MAGIC_LOG'
-export const MAPLE_LOG = 'MAPLE_LOG'
-export const MAHOGANY_LOG = 'MAHOGANY_LOG'
-export const YEW_LOG = 'YEW_LOG'
-export const STICK = 'STICK'
+export const OAK_LOG = 'OAK_LOG';
+export const WILLOW_LOG = 'WILLOW_LOG';
+export const TEAK_LOG = 'TEAK_LOG';
+export const MAGIC_LOG = 'MAGIC_LOG';
+export const MAPLE_LOG = 'MAPLE_LOG';
+export const MAHOGANY_LOG = 'MAHOGANY_LOG';
+export const YEW_LOG = 'YEW_LOG';
+export const STICK = 'STICK';
 
+export const COPPER_ORE = 'COPPER_ORE';
+export const TIN_ORE = 'TIN_ORE';
+export const IRON_ORE = 'IRON_ORE';
+export const COAL_ORE = 'COAL_ORE';
+export const SILVER_ORE = 'SILVER_ORE';
+export const GOLD_ORE = 'GOLD_ORE';
+export const MITHRIL_ORE = 'MITHRIL_ORE';
+export const ADAMANTITE_ORE = 'ADAMANTITE_ORE';
+export const LUMINITE_ORE = 'LUMINITE_ORE';
+export const RUNITE_ORE = 'RUNITE_ORE';
+export const ORICHALCITE_ORE = 'ORICHALCITE_ORE';
+export const DRAKOLITH_ORE = 'DRAKOLITH_ORE';
+export const NECRITE_ORE = 'NECRITE_ORE';
+export const PHASMATITE_ORE = 'PHASMATITE_ORE';
+export const BANITE_ORE = 'BANITE_ORE';
+export const LIGHT_ANIMICA = 'LIGHT_ANIMICA';
+export const DARK_ANIMICA = 'DARK_ANIMICA';
 
-export const COPPER_ORE = 'COPPER_ORE'
-export const TIN_ORE = 'TIN_ORE'
-export const IRON_ORE = 'IRON_ORE'
-export const COAL_ORE = 'COAL_ORE'
-export const SILVER_ORE = 'SILVER_ORE'
-export const GOLD_ORE = 'GOLD_ORE'
-export const MITHRIL_ORE = 'MITHRIL_ORE'
-export const ADAMANTITE_ORE = 'ADAMANTITE_ORE'
-export const LUMINITE_ORE = 'LUMINITE_ORE'
-export const RUNITE_ORE = 'RUNITE_ORE'
-export const ORICHALCITE_ORE = 'ORICHALCITE_ORE'
-export const DRAKOLITH_ORE = 'DRAKOLITH_ORE'
-export const NECRITE_ORE = 'NECRITE_ORE'
-export const PHASMATITE_ORE = 'PHASMATITE_ORE'
-export const BANITE_ORE = 'BANITE_ORE'
-export const LIGHT_ANIMICA = 'LIGHT_ANIMICA'
-export const DARK_ANIMICA = 'DARK_ANIMICA'
+export const SHRIMP_NORMAL = 'SHRIMP_NORMAL';
+export const SHRIMP_PRIME = 'SHRIMP_PRIME';
+export const SHRIMP_PRAWN = 'SHRIMP_PRAWN';
+export const SHRIMP_MULTI = 'SHRIMP_MULTI';
 
+export const TROUT_HERRING = 'TROUT_HERRING';
+export const TROUT_PRIME = 'TROUT_PRIME';
+export const TROUT_SALMON = 'TROUT_SALMON';
+export const TROUT_TROUT = 'TROUT_TROUT';
 
-export const SHRIMP_NORMAL = 'SHRIMP_NORMAL'
-export const SHRIMP_PRIME = 'SHRIMP_PRIME'
-export const SHRIMP_PRAWN = 'SHRIMP_PRAWN'
-export const SHRIMP_MULTI = 'SHRIMP_MULTI'
-
-export const TROUT_HERRING = 'TROUT_HERRING'
-export const TROUT_PRIME = 'TROUT_PRIME'
-export const TROUT_SALMON = 'TROUT_SALMON'
-export const TROUT_TROUT = 'TROUT_TROUT'
+export const ARBUCK_SEED = 'ARBUCK_SEED';
+export const AVACADO_SEED = 'AVACADO_SEED';
+export const AVANTOE_SEED = 'AVANTOE_SEED';
+export const BAR_BERRY_SEED = 'BAR_BERRY_SEED';
+export const BLOODWEED_SEED = 'BLOODWEED_SEED';
+export const CABBAGE_SEED = 'CABBAGE_SEED';
+export const CADANTINE_SEED = 'CADANTINE_SEED';
+export const CADAVA_BERRY_SEED = 'CADAVA_BERRY_SEED';
+export const CORN_SEED = 'CORN_SEED';
+export const DWARF_WEED_SEED = 'DWARF_WEED_SEED';
+export const DWELL_BERRY_SEED = 'DWELL_BERRY_SEED';
+export const FELLSTALK_SEED = 'FELLSTALK_SEED';
+export const GUAM_SEED = 'GUAM_SEED';
+export const HARRALANDER_SEED = 'HARRALANDER_SEED';
+export const IRIT_SEED = 'IRIT_SEED';
+export const JANGER_BERRY_SEED = 'JANGER_BERRY_SEED';
+export const KWUARM_SEED = 'KWUARM_SEED';
+export const LANTADYME_SEED = 'LANTADYME_SEED';
+export const LYCHEE_SEED = 'LYCHEE_SEED';
+export const MANGO_SEED = 'MANGO_SEED';
+export const MARRENTILL_SEED = 'MARRENTILL_SEED';
+export const ONION_SEED = 'ONION_SEED';
+export const POTATO_SEED = 'POTATO_SEED';
+export const RANARR_SEED = 'RANARR_SEED';
+export const RED_BERRY_SEED = 'RED_BERRY_SEED';
+export const SNAPDRAGON_SEED = 'SNAPDRAGON_SEED';
+export const STRAWBERRY_SEED = 'STRAWBERRY_SEED';
+export const TARROMIN_SEED = 'TARROMIN_SEED';
+export const TOADFLAX_SEED = 'TOADFLAX_SEED';
+export const TOMATO_SEED = 'TOMATO_SEED';
+export const TORSTOL_SEED = 'TORSTOL_SEED';
+export const WATERMELON_SEED = 'WATERMELON_SEED';
+export const WERGALI_SEED = 'WERGALI_SEED';
+export const WHITE_BERRY_SEED = 'WHITE_BERRY_SEED';
 
 export const itemImages = {
     [OAK_LOG]: OAK_LOG_ICON,
@@ -65,12 +156,10 @@ export const itemImages = {
     [SHRIMP_MULTI]: SHRIMP_MULTI_ICON,
     [SHRIMP_PRAWN]: SHRIMP_GRAND_ICON,
 
-
     [TROUT_HERRING]: TROUT_HERRING_ICON,
     [TROUT_PRIME]: TROUT_PRIME_ICON,
     [TROUT_SALMON]: TROUT_SALMON_ICON,
     [TROUT_TROUT]: TROUT_TROUT_ICON,
-
 
     [COPPER_ORE]: COPPER_ORE_ICON,
     [TIN_ORE]: TIN_ORE_ICON,
@@ -89,7 +178,42 @@ export const itemImages = {
     [DARK_ANIMICA]: DARK_ANIMICA_ICON,
     [SILVER_ORE]: SILVER_ORE_ICON,
     [GOLD_ORE]: GOLD_ORE_ICON,
-}
+
+    [ARBUCK_SEED]: ARBUCK_SEED_ICON,
+    [AVACADO_SEED]: AVACADO_SEED_ICON,
+    [AVANTOE_SEED]: AVANTOE_SEED_ICON,
+    [BAR_BERRY_SEED]: BAR_BERRY_SEED_ICON,
+    [BLOODWEED_SEED]: BLOODWEED_SEED_ICON,
+    [CABBAGE_SEED]: CABBAGE_SEED_ICON,
+    [CADANTINE_SEED]: CADANTINE_SEED_ICON,
+    [CADAVA_BERRY_SEED]: CADAVA_BERRY_SEED_ICON,
+    [CORN_SEED]: CORN_SEED_ICON,
+    [DWARF_WEED_SEED]: DWARF_WEED_SEED_ICON,
+    [DWELL_BERRY_SEED]: DWELL_BERRY_SEED_ICON,
+    [FELLSTALK_SEED]: FELLSTALK_SEED_ICON,
+    [GUAM_SEED]: GUAM_SEED_ICON,
+    [HARRALANDER_SEED]: HARRALANDER_SEED_ICON,
+    [IRIT_SEED]: IRIT_SEED_ICON,
+    [JANGER_BERRY_SEED]: JANGER_BERRY_SEED_ICON,
+    [KWUARM_SEED]: KWUARM_SEED_ICON,
+    [LANTADYME_SEED]: LANTADYME_SEED_ICON,
+    [LYCHEE_SEED]: LYCHEE_SEED_ICON,
+    [MANGO_SEED]: MANGO_SEED_ICON,
+    [MARRENTILL_SEED]: MARRENTILL_SEED_ICON,
+    [ONION_SEED]: ONION_SEED_ICON,
+    [POTATO_SEED]: POTATO_SEED_ICON,
+    [RANARR_SEED]: RANARR_SEED_ICON,
+    [RED_BERRY_SEED]: RED_BERRY_SEED_ICON,
+    [SNAPDRAGON_SEED]: SNAPDRAGON_SEED_ICON,
+    [STRAWBERRY_SEED]: STRAWBERRY_SEED_ICON,
+    [TARROMIN_SEED]: TARROMIN_SEED_ICON,
+    [TOADFLAX_SEED]: TOADFLAX_SEED_ICON,
+    [TOMATO_SEED]: TOMATO_SEED_ICON,
+    [TORSTOL_SEED]: TORSTOL_SEED_ICON,
+    [WATERMELON_SEED]: WATERMELON_SEED_ICON,
+    [WERGALI_SEED]: WERGALI_SEED_ICON,
+    [WHITE_BERRY_SEED]: WHITE_BERRY_SEED_ICON,
+};
 
 export const ALL_ITEMS = {
     [STICK]: new InventoryItem(STICK, 0),
@@ -111,27 +235,62 @@ export const ALL_ITEMS = {
     [TROUT_SALMON]: new InventoryItem(TROUT_SALMON, 0),
     [TROUT_TROUT]: new InventoryItem(TROUT_TROUT, 0),
 
-    [COPPER_ORE]: new InventoryItem(COPPER_ORE, 0), 
-    [TIN_ORE]: new InventoryItem(TIN_ORE, 0), 
-    [IRON_ORE]: new InventoryItem(IRON_ORE, 0), 
-    [COAL_ORE]: new InventoryItem(COAL_ORE, 0), 
-    [MITHRIL_ORE]: new InventoryItem(MITHRIL_ORE, 0), 
-    [ADAMANTITE_ORE]: new InventoryItem(ADAMANTITE_ORE, 0), 
-    [LUMINITE_ORE]: new InventoryItem(LUMINITE_ORE, 0), 
-    [RUNITE_ORE]: new InventoryItem(RUNITE_ORE, 0), 
-    [ORICHALCITE_ORE]: new InventoryItem(ORICHALCITE_ORE, 0), 
-    [DRAKOLITH_ORE]: new InventoryItem(DRAKOLITH_ORE, 0), 
-    [NECRITE_ORE]: new InventoryItem(NECRITE_ORE, 0), 
-    [PHASMATITE_ORE]: new InventoryItem(PHASMATITE_ORE, 0), 
-    [BANITE_ORE]: new InventoryItem(BANITE_ORE, 0), 
-    [LIGHT_ANIMICA]: new InventoryItem(LIGHT_ANIMICA, 0), 
-    [DARK_ANIMICA]: new InventoryItem(DARK_ANIMICA, 0), 
-    [GOLD_ORE]: new InventoryItem(DARK_ANIMICA, 0), 
-    [SILVER_ORE]: new InventoryItem(DARK_ANIMICA, 0), 
-}
+    [COPPER_ORE]: new InventoryItem(COPPER_ORE, 0),
+    [TIN_ORE]: new InventoryItem(TIN_ORE, 0),
+    [IRON_ORE]: new InventoryItem(IRON_ORE, 0),
+    [COAL_ORE]: new InventoryItem(COAL_ORE, 0),
+    [MITHRIL_ORE]: new InventoryItem(MITHRIL_ORE, 0),
+    [ADAMANTITE_ORE]: new InventoryItem(ADAMANTITE_ORE, 0),
+    [LUMINITE_ORE]: new InventoryItem(LUMINITE_ORE, 0),
+    [RUNITE_ORE]: new InventoryItem(RUNITE_ORE, 0),
+    [ORICHALCITE_ORE]: new InventoryItem(ORICHALCITE_ORE, 0),
+    [DRAKOLITH_ORE]: new InventoryItem(DRAKOLITH_ORE, 0),
+    [NECRITE_ORE]: new InventoryItem(NECRITE_ORE, 0),
+    [PHASMATITE_ORE]: new InventoryItem(PHASMATITE_ORE, 0),
+    [BANITE_ORE]: new InventoryItem(BANITE_ORE, 0),
+    [LIGHT_ANIMICA]: new InventoryItem(LIGHT_ANIMICA, 0),
+    [DARK_ANIMICA]: new InventoryItem(DARK_ANIMICA, 0),
+    [GOLD_ORE]: new InventoryItem(DARK_ANIMICA, 0),
+    [SILVER_ORE]: new InventoryItem(DARK_ANIMICA, 0),
+
+    [ARBUCK_SEED]: new InventoryItem(ARBUCK_SEED, 10),
+    [AVACADO_SEED]: new InventoryItem(AVACADO_SEED, 10),
+    [AVANTOE_SEED]: new InventoryItem(AVANTOE_SEED, 10),
+    [BAR_BERRY_SEED]: new InventoryItem(BAR_BERRY_SEED, 10),
+    [BLOODWEED_SEED]: new InventoryItem(BLOODWEED_SEED, 10),
+    [CABBAGE_SEED]: new InventoryItem(CABBAGE_SEED, 10),
+    [CADANTINE_SEED]: new InventoryItem(CADANTINE_SEED, 10),
+    [CADAVA_BERRY_SEED]: new InventoryItem(CADAVA_BERRY_SEED, 10),
+    [CORN_SEED]: new InventoryItem(CORN_SEED, 10),
+    [DWARF_WEED_SEED]: new InventoryItem(DWARF_WEED_SEED, 10),
+    [DWELL_BERRY_SEED]: new InventoryItem(DWELL_BERRY_SEED, 10),
+    [FELLSTALK_SEED]: new InventoryItem(FELLSTALK_SEED, 10),
+    [GUAM_SEED]: new InventoryItem(GUAM_SEED, 10),
+    [HARRALANDER_SEED]: new InventoryItem(HARRALANDER_SEED, 10),
+    [IRIT_SEED]: new InventoryItem(IRIT_SEED, 10),
+    [JANGER_BERRY_SEED]: new InventoryItem(JANGER_BERRY_SEED, 10),
+    [KWUARM_SEED]: new InventoryItem(KWUARM_SEED, 10),
+    [LANTADYME_SEED]: new InventoryItem(LANTADYME_SEED, 10),
+    [LYCHEE_SEED]: new InventoryItem(LYCHEE_SEED, 10),
+    [MANGO_SEED]: new InventoryItem(MANGO_SEED, 10),
+    [MARRENTILL_SEED]: new InventoryItem(MARRENTILL_SEED, 10),
+    [ONION_SEED]: new InventoryItem(ONION_SEED, 10),
+    [POTATO_SEED]: new InventoryItem(POTATO_SEED, 10),
+    [RANARR_SEED]: new InventoryItem(RANARR_SEED, 10),
+    [RED_BERRY_SEED]: new InventoryItem(RED_BERRY_SEED, 10),
+    [SNAPDRAGON_SEED]: new InventoryItem(SNAPDRAGON_SEED, 10),
+    [STRAWBERRY_SEED]: new InventoryItem(STRAWBERRY_SEED, 10),
+    [TARROMIN_SEED]: new InventoryItem(TARROMIN_SEED, 10),
+    [TOADFLAX_SEED]: new InventoryItem(TOADFLAX_SEED, 10),
+    [TOMATO_SEED]: new InventoryItem(TOMATO_SEED, 10),
+    [TORSTOL_SEED]: new InventoryItem(TORSTOL_SEED, 10),
+    [WATERMELON_SEED]: new InventoryItem(WATERMELON_SEED, 10),
+    [WERGALI_SEED]: new InventoryItem(WERGALI_SEED, 10),
+    [WHITE_BERRY_SEED]: new InventoryItem(WHITE_BERRY_SEED, 10),
+};
 
 export interface BankItem {
-    name: string
-    icon: string
-    count: number
+    name: string;
+    icon: string;
+    count: number;
 }

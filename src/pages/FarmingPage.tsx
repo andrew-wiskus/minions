@@ -1,4 +1,40 @@
 import React, { CSSProperties } from 'react';
+import {
+    POTATO_SEED,
+    ONION_SEED,
+    CABBAGE_SEED,
+    TOMATO_SEED,
+    CORN_SEED,
+    STRAWBERRY_SEED,
+    WATERMELON_SEED,
+    RED_BERRY_SEED,
+    CADAVA_BERRY_SEED,
+    DWELL_BERRY_SEED,
+    JANGER_BERRY_SEED,
+    WHITE_BERRY_SEED,
+    BAR_BERRY_SEED,
+    AVACADO_SEED,
+    MANGO_SEED,
+    LYCHEE_SEED,
+    GUAM_SEED,
+    MARRENTILL_SEED,
+    TARROMIN_SEED,
+    HARRALANDER_SEED,
+    RANARR_SEED,
+    TOADFLAX_SEED,
+    IRIT_SEED,
+    WERGALI_SEED,
+    AVANTOE_SEED,
+    KWUARM_SEED,
+    BLOODWEED_SEED,
+    SNAPDRAGON_SEED,
+    CADANTINE_SEED,
+    LANTADYME_SEED,
+    ARBUCK_SEED,
+    DWARF_WEED_SEED,
+    TORSTOL_SEED,
+    FELLSTALK_SEED,
+} from '../config/itemConfig';
 import { INNER_COLOR, LEVEL_GREEN, OUTER_COLOR } from '../constants';
 import { WEATHER_CLOUD_ICON, WEATHER_RAIN_ICON, WEATHER_STORM_ICON, WEATHER_SUN_ICON } from '../images/itemImages';
 
@@ -64,96 +100,112 @@ class Seed {
 
 let seedConfig = {
     POTATO: {
+        resource_id: POTATO_SEED,
         name: 'potato',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     ONION: {
+        resource_id: ONION_SEED,
         name: 'onion',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     CABBAGE: {
+        resource_id: CABBAGE_SEED,
         name: 'cabbage',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     TOMATO: {
+        resource_id: TOMATO_SEED,
         name: 'tomato',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     CORN: {
+        resource_id: CORN_SEED,
         name: 'corn',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     STRAWBERRY: {
+        resource_id: STRAWBERRY_SEED,
         name: 'strawberry',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     WATERMELON: {
+        resource_id: WATERMELON_SEED,
         name: 'watermelon',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     RED_BERRY: {
+        resource_id: RED_BERRY_SEED,
         name: 'RED BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     CADAVA_BERRY: {
+        resource_id: CADAVA_BERRY_SEED,
         name: 'CADAVA BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     DWELL_BERRY: {
+        resource_id: DWELL_BERRY_SEED,
         name: 'DWELL BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     JANGER_BERRY: {
+        resource_id: JANGER_BERRY_SEED,
         name: 'JANGER BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     WHITE_BERRY: {
+        resource_id: WHITE_BERRY_SEED,
         name: 'WHITE BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     BAR_BERRY: {
+        resource_id: BAR_BERRY_SEED,
         name: 'BAR BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     AVACADO: {
+        resource_id: AVACADO_SEED,
         name: 'AVACADO',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     MANGO: {
+        resource_id: MANGO_SEED,
         name: 'MANGO',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     LYCHEE: {
+        resource_id: LYCHEE_SEED,
         name: 'LYCHEE',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -163,6 +215,7 @@ let seedConfig = {
     // herbs
 
     GUAM: {
+        resource_id: GUAM_SEED,
         name: 'GUAM',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -170,6 +223,7 @@ let seedConfig = {
     },
 
     MARRENTILL: {
+        resource_id: MARRENTILL_SEED,
         name: 'MARRENTILL',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -177,6 +231,7 @@ let seedConfig = {
     },
 
     TARROMIN: {
+        resource_id: TARROMIN_SEED,
         name: 'TARROMIN',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -184,6 +239,7 @@ let seedConfig = {
     },
 
     HARRALANDER: {
+        resource_id: HARRALANDER_SEED,
         name: 'HARRALANDER',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -191,6 +247,7 @@ let seedConfig = {
     },
 
     RANARR: {
+        resource_id: RANARR_SEED,
         name: 'RANARR',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -198,6 +255,7 @@ let seedConfig = {
     },
 
     TOADFLAX: {
+        resource_id: TOADFLAX_SEED,
         name: 'TOADFLAX',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -205,6 +263,7 @@ let seedConfig = {
     },
 
     IRIT: {
+        resource_id: IRIT_SEED,
         name: 'IRIT',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -212,6 +271,7 @@ let seedConfig = {
     },
 
     WERGALI: {
+        resource_id: WERGALI_SEED,
         name: 'WERGALI',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -219,6 +279,7 @@ let seedConfig = {
     },
 
     AVANTOE: {
+        resource_id: AVANTOE_SEED,
         name: 'AVANTOE',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -226,6 +287,7 @@ let seedConfig = {
     },
 
     KWUARM: {
+        resource_id: KWUARM_SEED,
         name: 'KWUARM',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -233,6 +295,7 @@ let seedConfig = {
     },
 
     BLOODWEED: {
+        resource_id: BLOODWEED_SEED,
         name: 'BLOODWEED',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -240,6 +303,7 @@ let seedConfig = {
     },
 
     SNAPDRAGON: {
+        resource_id: SNAPDRAGON_SEED,
         name: 'SNAPDRAGON',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -247,6 +311,7 @@ let seedConfig = {
     },
 
     CADANTINE: {
+        resource_id: CADANTINE_SEED,
         name: 'CADANTINE',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -254,6 +319,7 @@ let seedConfig = {
     },
 
     LANTADYME: {
+        resource_id: LANTADYME_SEED,
         name: 'LANTADYME',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -261,6 +327,7 @@ let seedConfig = {
     },
 
     ARBUCK: {
+        resource_id: ARBUCK_SEED,
         name: 'ARBUCK',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -268,18 +335,21 @@ let seedConfig = {
     },
 
     DWARF_WEED: {
+        resource_id: DWARF_WEED_SEED,
         name: 'DWARF WEED',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     TORSTOL: {
+        resource_id: TORSTOL_SEED,
         name: 'TORSTOL',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
     FELLSTALK: {
+        resource_id: FELLSTALK_SEED,
         name: 'FELLSTALK',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
@@ -295,6 +365,7 @@ let ALL_FOOD_SEEDS = [
     new Seed(seedConfig.CABBAGE, Math.floor(Math.random() * 1000)),
     new Seed(seedConfig.TOMATO, Math.floor(Math.random() * 1000)),
     new Seed(seedConfig.CORN, Math.floor(Math.random() * 1000)),
+    new Seed(seedConfig.STRAWBERRY, Math.floor(Math.random() * 1000)),
     new Seed(seedConfig.STRAWBERRY, Math.floor(Math.random() * 1000)),
     new Seed(seedConfig.WATERMELON, Math.floor(Math.random() * 1000)),
     new Seed(seedConfig.RED_BERRY, Math.floor(Math.random() * 1000)),
