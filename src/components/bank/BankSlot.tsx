@@ -1,17 +1,17 @@
-import { observer } from 'mobx-react'
-import React, { CSSProperties } from 'react'
-import BankBG from '../../images/bank_bg.png'
-import { InventoryItem } from '../../models/Item'
+import { observer } from 'mobx-react';
+import React, { CSSProperties } from 'react';
+import BankBG from '../../images/bank_bg.png';
+import { BankItem } from '../../models/Item';
 
 @observer
-export class BankSlot extends React.Component<{ item: InventoryItem }> {
+export class BankSlot extends React.Component<{ item: BankItem }> {
     public render() {
         return (
             <div style={styles.bankSlotContainer}>
-                <img alt="todo" style={styles.bankSlotIcon} src={this.props.item.icon} />
+                <img alt='todo' style={styles.bankSlotIcon} src={this.props.item.icon} />
                 <div style={styles.bankSlotValueText}>{numberWithCommas(this.props.item.count)}</div>
             </div>
-        )
+        );
     }
 }
 
@@ -38,7 +38,7 @@ const styles = {
     bankSlotIcon: {
         height: 45,
         width: 45,
-        objectFit: 'contain'
+        objectFit: 'contain',
     } as CSSProperties,
     bankSlotValueText: {
         position: 'absolute',
@@ -55,11 +55,11 @@ const styles = {
         letterSpacing: 0.1,
         fontSize: 12,
     } as CSSProperties,
-}
+};
 
 function numberWithCommas(x) {
     if (x > 999999) {
-        return Math.floor((x / 1000000) * 10) / 10 + 'm'
+        return Math.floor((x / 1000000) * 10) / 10 + 'm';
     }
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }

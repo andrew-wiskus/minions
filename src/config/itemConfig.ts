@@ -67,7 +67,7 @@ import {
     WERGALI_SEED_ICON,
     WHITE_BERRY_SEED_ICON,
 } from '../images/itemImages';
-import { InventoryItem } from '../models/Item';
+import { BankItem } from '../models/Item';
 
 export const OAK_LOG = 'OAK_LOG';
 export const WILLOW_LOG = 'WILLOW_LOG';
@@ -140,6 +140,14 @@ export const TORSTOL_SEED = 'TORSTOL_SEED';
 export const WATERMELON_SEED = 'WATERMELON_SEED';
 export const WERGALI_SEED = 'WERGALI_SEED';
 export const WHITE_BERRY_SEED = 'WHITE_BERRY_SEED';
+
+export enum ItemType {
+    HERB_SEED = 'HERB_SEED',
+    FOOD_SEED = 'FOOD_SEED',
+    LOG = 'LOG',
+    FISH = 'FISH',
+    ORE = 'ORE',
+}
 
 export const itemImages = {
     [OAK_LOG]: OAK_LOG_ICON,
@@ -216,81 +224,83 @@ export const itemImages = {
 };
 
 export const ALL_ITEMS = {
-    [STICK]: new InventoryItem(STICK, 0),
-    [OAK_LOG]: new InventoryItem(OAK_LOG, 0),
-    [WILLOW_LOG]: new InventoryItem(WILLOW_LOG, 0),
-    [TEAK_LOG]: new InventoryItem(TEAK_LOG, 0),
-    [MAGIC_LOG]: new InventoryItem(MAGIC_LOG, 0),
-    [MAPLE_LOG]: new InventoryItem(MAPLE_LOG, 0),
-    [MAHOGANY_LOG]: new InventoryItem(MAHOGANY_LOG, 0),
-    [YEW_LOG]: new InventoryItem(YEW_LOG, 0),
+    [STICK]: new BankItem({ id: STICK, count: 0, itemType: ItemType.LOG }),
+    [OAK_LOG]: new BankItem({ id: OAK_LOG, count: 0, itemType: ItemType.LOG }),
+    [WILLOW_LOG]: new BankItem({ id: WILLOW_LOG, count: 0, itemType: ItemType.LOG }),
+    [TEAK_LOG]: new BankItem({ id: TEAK_LOG, count: 0, itemType: ItemType.LOG }),
+    [MAGIC_LOG]: new BankItem({ id: MAGIC_LOG, count: 0, itemType: ItemType.LOG }),
+    [MAPLE_LOG]: new BankItem({ id: MAPLE_LOG, count: 0, itemType: ItemType.LOG }),
+    [MAHOGANY_LOG]: new BankItem({ id: MAHOGANY_LOG, count: 0, itemType: ItemType.LOG }),
+    [YEW_LOG]: new BankItem({ id: YEW_LOG, count: 0, itemType: ItemType.LOG }),
 
-    [SHRIMP_NORMAL]: new InventoryItem(SHRIMP_NORMAL, 0),
-    [SHRIMP_PRIME]: new InventoryItem(SHRIMP_PRIME, 0),
-    [SHRIMP_MULTI]: new InventoryItem(SHRIMP_MULTI, 0),
-    [SHRIMP_PRAWN]: new InventoryItem(SHRIMP_PRAWN, 0),
+    [SHRIMP_NORMAL]: new BankItem({ id: SHRIMP_NORMAL, count: 0, itemType: ItemType.FISH }),
+    [SHRIMP_PRIME]: new BankItem({ id: SHRIMP_PRIME, count: 0, itemType: ItemType.FISH }),
+    [SHRIMP_MULTI]: new BankItem({ id: SHRIMP_MULTI, count: 0, itemType: ItemType.FISH }),
+    [SHRIMP_PRAWN]: new BankItem({ id: SHRIMP_PRAWN, count: 0, itemType: ItemType.FISH }),
+    [TROUT_HERRING]: new BankItem({ id: TROUT_HERRING, count: 0, itemType: ItemType.FISH }),
+    [TROUT_PRIME]: new BankItem({ id: TROUT_PRIME, count: 0, itemType: ItemType.FISH }),
+    [TROUT_SALMON]: new BankItem({ id: TROUT_SALMON, count: 0, itemType: ItemType.FISH }),
+    [TROUT_TROUT]: new BankItem({ id: TROUT_TROUT, count: 0, itemType: ItemType.FISH }),
 
-    [TROUT_HERRING]: new InventoryItem(TROUT_HERRING, 0),
-    [TROUT_PRIME]: new InventoryItem(TROUT_PRIME, 0),
-    [TROUT_SALMON]: new InventoryItem(TROUT_SALMON, 0),
-    [TROUT_TROUT]: new InventoryItem(TROUT_TROUT, 0),
+    [COPPER_ORE]: new BankItem({ id: COPPER_ORE, count: 0, itemType: ItemType.ORE }),
+    [TIN_ORE]: new BankItem({ id: TIN_ORE, count: 0, itemType: ItemType.ORE }),
+    [IRON_ORE]: new BankItem({ id: IRON_ORE, count: 0, itemType: ItemType.ORE }),
+    [COAL_ORE]: new BankItem({ id: COAL_ORE, count: 0, itemType: ItemType.ORE }),
+    [MITHRIL_ORE]: new BankItem({ id: MITHRIL_ORE, count: 0, itemType: ItemType.ORE }),
+    [ADAMANTITE_ORE]: new BankItem({ id: ADAMANTITE_ORE, count: 0, itemType: ItemType.ORE }),
+    [LUMINITE_ORE]: new BankItem({ id: LUMINITE_ORE, count: 0, itemType: ItemType.ORE }),
+    [RUNITE_ORE]: new BankItem({ id: RUNITE_ORE, count: 0, itemType: ItemType.ORE }),
+    [ORICHALCITE_ORE]: new BankItem({ id: ORICHALCITE_ORE, count: 0, itemType: ItemType.ORE }),
+    [DRAKOLITH_ORE]: new BankItem({ id: DRAKOLITH_ORE, count: 0, itemType: ItemType.ORE }),
+    [NECRITE_ORE]: new BankItem({ id: NECRITE_ORE, count: 0, itemType: ItemType.ORE }),
+    [PHASMATITE_ORE]: new BankItem({ id: PHASMATITE_ORE, count: 0, itemType: ItemType.ORE }),
+    [BANITE_ORE]: new BankItem({ id: BANITE_ORE, count: 0, itemType: ItemType.ORE }),
+    [LIGHT_ANIMICA]: new BankItem({ id: LIGHT_ANIMICA, count: 0, itemType: ItemType.ORE }),
+    [DARK_ANIMICA]: new BankItem({ id: DARK_ANIMICA, count: 0, itemType: ItemType.ORE }),
+    [GOLD_ORE]: new BankItem({ id: DARK_ANIMICA, count: 0, itemType: ItemType.ORE }),
+    [SILVER_ORE]: new BankItem({ id: DARK_ANIMICA, count: 0, itemType: ItemType.ORE }),
 
-    [COPPER_ORE]: new InventoryItem(COPPER_ORE, 0),
-    [TIN_ORE]: new InventoryItem(TIN_ORE, 0),
-    [IRON_ORE]: new InventoryItem(IRON_ORE, 0),
-    [COAL_ORE]: new InventoryItem(COAL_ORE, 0),
-    [MITHRIL_ORE]: new InventoryItem(MITHRIL_ORE, 0),
-    [ADAMANTITE_ORE]: new InventoryItem(ADAMANTITE_ORE, 0),
-    [LUMINITE_ORE]: new InventoryItem(LUMINITE_ORE, 0),
-    [RUNITE_ORE]: new InventoryItem(RUNITE_ORE, 0),
-    [ORICHALCITE_ORE]: new InventoryItem(ORICHALCITE_ORE, 0),
-    [DRAKOLITH_ORE]: new InventoryItem(DRAKOLITH_ORE, 0),
-    [NECRITE_ORE]: new InventoryItem(NECRITE_ORE, 0),
-    [PHASMATITE_ORE]: new InventoryItem(PHASMATITE_ORE, 0),
-    [BANITE_ORE]: new InventoryItem(BANITE_ORE, 0),
-    [LIGHT_ANIMICA]: new InventoryItem(LIGHT_ANIMICA, 0),
-    [DARK_ANIMICA]: new InventoryItem(DARK_ANIMICA, 0),
-    [GOLD_ORE]: new InventoryItem(DARK_ANIMICA, 0),
-    [SILVER_ORE]: new InventoryItem(DARK_ANIMICA, 0),
+    [AVACADO_SEED]: new BankItem({ id: AVACADO_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [BAR_BERRY_SEED]: new BankItem({ id: BAR_BERRY_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [CABBAGE_SEED]: new BankItem({ id: CABBAGE_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [CADAVA_BERRY_SEED]: new BankItem({ id: CADAVA_BERRY_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [CORN_SEED]: new BankItem({ id: CORN_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [DWELL_BERRY_SEED]: new BankItem({ id: DWELL_BERRY_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [JANGER_BERRY_SEED]: new BankItem({ id: JANGER_BERRY_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [LYCHEE_SEED]: new BankItem({ id: LYCHEE_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [MANGO_SEED]: new BankItem({ id: MANGO_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [ONION_SEED]: new BankItem({ id: ONION_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [POTATO_SEED]: new BankItem({ id: POTATO_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [RED_BERRY_SEED]: new BankItem({ id: RED_BERRY_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [STRAWBERRY_SEED]: new BankItem({ id: STRAWBERRY_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [TOMATO_SEED]: new BankItem({ id: TOMATO_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [WATERMELON_SEED]: new BankItem({ id: WATERMELON_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
+    [WHITE_BERRY_SEED]: new BankItem({ id: WHITE_BERRY_SEED, count: 10, itemType: ItemType.FOOD_SEED }),
 
-    [ARBUCK_SEED]: new InventoryItem(ARBUCK_SEED, 10),
-    [AVACADO_SEED]: new InventoryItem(AVACADO_SEED, 10),
-    [AVANTOE_SEED]: new InventoryItem(AVANTOE_SEED, 10),
-    [BAR_BERRY_SEED]: new InventoryItem(BAR_BERRY_SEED, 10),
-    [BLOODWEED_SEED]: new InventoryItem(BLOODWEED_SEED, 10),
-    [CABBAGE_SEED]: new InventoryItem(CABBAGE_SEED, 10),
-    [CADANTINE_SEED]: new InventoryItem(CADANTINE_SEED, 10),
-    [CADAVA_BERRY_SEED]: new InventoryItem(CADAVA_BERRY_SEED, 10),
-    [CORN_SEED]: new InventoryItem(CORN_SEED, 10),
-    [DWARF_WEED_SEED]: new InventoryItem(DWARF_WEED_SEED, 10),
-    [DWELL_BERRY_SEED]: new InventoryItem(DWELL_BERRY_SEED, 10),
-    [FELLSTALK_SEED]: new InventoryItem(FELLSTALK_SEED, 10),
-    [GUAM_SEED]: new InventoryItem(GUAM_SEED, 10),
-    [HARRALANDER_SEED]: new InventoryItem(HARRALANDER_SEED, 10),
-    [IRIT_SEED]: new InventoryItem(IRIT_SEED, 10),
-    [JANGER_BERRY_SEED]: new InventoryItem(JANGER_BERRY_SEED, 10),
-    [KWUARM_SEED]: new InventoryItem(KWUARM_SEED, 10),
-    [LANTADYME_SEED]: new InventoryItem(LANTADYME_SEED, 10),
-    [LYCHEE_SEED]: new InventoryItem(LYCHEE_SEED, 10),
-    [MANGO_SEED]: new InventoryItem(MANGO_SEED, 10),
-    [MARRENTILL_SEED]: new InventoryItem(MARRENTILL_SEED, 10),
-    [ONION_SEED]: new InventoryItem(ONION_SEED, 10),
-    [POTATO_SEED]: new InventoryItem(POTATO_SEED, 10),
-    [RANARR_SEED]: new InventoryItem(RANARR_SEED, 10),
-    [RED_BERRY_SEED]: new InventoryItem(RED_BERRY_SEED, 10),
-    [SNAPDRAGON_SEED]: new InventoryItem(SNAPDRAGON_SEED, 10),
-    [STRAWBERRY_SEED]: new InventoryItem(STRAWBERRY_SEED, 10),
-    [TARROMIN_SEED]: new InventoryItem(TARROMIN_SEED, 10),
-    [TOADFLAX_SEED]: new InventoryItem(TOADFLAX_SEED, 10),
-    [TOMATO_SEED]: new InventoryItem(TOMATO_SEED, 10),
-    [TORSTOL_SEED]: new InventoryItem(TORSTOL_SEED, 10),
-    [WATERMELON_SEED]: new InventoryItem(WATERMELON_SEED, 10),
-    [WERGALI_SEED]: new InventoryItem(WERGALI_SEED, 10),
-    [WHITE_BERRY_SEED]: new InventoryItem(WHITE_BERRY_SEED, 10),
+    [ARBUCK_SEED]: new BankItem({ id: ARBUCK_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [AVANTOE_SEED]: new BankItem({ id: AVANTOE_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [BLOODWEED_SEED]: new BankItem({ id: BLOODWEED_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [CADANTINE_SEED]: new BankItem({ id: CADANTINE_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [DWARF_WEED_SEED]: new BankItem({ id: DWARF_WEED_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [FELLSTALK_SEED]: new BankItem({ id: FELLSTALK_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [GUAM_SEED]: new BankItem({ id: GUAM_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [HARRALANDER_SEED]: new BankItem({ id: HARRALANDER_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [IRIT_SEED]: new BankItem({ id: IRIT_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [KWUARM_SEED]: new BankItem({ id: KWUARM_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [LANTADYME_SEED]: new BankItem({ id: LANTADYME_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [MARRENTILL_SEED]: new BankItem({ id: MARRENTILL_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [RANARR_SEED]: new BankItem({ id: RANARR_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [SNAPDRAGON_SEED]: new BankItem({ id: SNAPDRAGON_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [TARROMIN_SEED]: new BankItem({ id: TARROMIN_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [TOADFLAX_SEED]: new BankItem({ id: TOADFLAX_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [TORSTOL_SEED]: new BankItem({ id: TORSTOL_SEED, count: 10, itemType: ItemType.HERB_SEED }),
+    [WERGALI_SEED]: new BankItem({ id: WERGALI_SEED, count: 10, itemType: ItemType.HERB_SEED }),
 };
 
-export interface BankItem {
-    name: string;
-    icon: string;
+export interface IBankItem {
+    name?: string;
+    icon?: string;
     count: number;
+    itemType: ItemType;
+    id: string;
 }

@@ -1,3 +1,4 @@
+import { inject, observer } from 'mobx-react';
 import React, { CSSProperties } from 'react';
 import {
     POTATO_SEED,
@@ -36,6 +37,7 @@ import {
     FELLSTALK_SEED,
 } from '../config/itemConfig';
 import { INNER_COLOR, LEVEL_GREEN, OUTER_COLOR } from '../constants';
+import { ApplicationStore } from '../data/applicationStore';
 import { WEATHER_CLOUD_ICON, WEATHER_RAIN_ICON, WEATHER_STORM_ICON, WEATHER_SUN_ICON } from '../images/itemImages';
 
 interface IWeather {
@@ -99,112 +101,112 @@ class Seed {
 }
 
 let seedConfig = {
-    POTATO: {
+    POTATO_SEED: {
         resource_id: POTATO_SEED,
-        name: 'potato',
+        name: 'POTATO',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    ONION: {
+    ONION_SEED: {
         resource_id: ONION_SEED,
-        name: 'onion',
+        name: 'ONION',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    CABBAGE: {
+    CABBAGE_SEED: {
         resource_id: CABBAGE_SEED,
-        name: 'cabbage',
+        name: 'CABBAGE',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    TOMATO: {
+    TOMATO_SEED: {
         resource_id: TOMATO_SEED,
-        name: 'tomato',
+        name: 'TOMATO',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    CORN: {
+    CORN_SEED: {
         resource_id: CORN_SEED,
-        name: 'corn',
+        name: 'CORN',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    STRAWBERRY: {
+    STRAWBERRY_SEED: {
         resource_id: STRAWBERRY_SEED,
-        name: 'strawberry',
+        name: 'STRAWBERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    WATERMELON: {
+    WATERMELON_SEED: {
         resource_id: WATERMELON_SEED,
-        name: 'watermelon',
+        name: 'WATERMELON',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    RED_BERRY: {
+    RED_BERRY_SEED: {
         resource_id: RED_BERRY_SEED,
         name: 'RED BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    CADAVA_BERRY: {
+    CADAVA_BERRY_SEED: {
         resource_id: CADAVA_BERRY_SEED,
         name: 'CADAVA BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    DWELL_BERRY: {
+    DWELL_BERRY_SEED: {
         resource_id: DWELL_BERRY_SEED,
         name: 'DWELL BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    JANGER_BERRY: {
+    JANGER_BERRY_SEED: {
         resource_id: JANGER_BERRY_SEED,
         name: 'JANGER BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    WHITE_BERRY: {
+    WHITE_BERRY_SEED: {
         resource_id: WHITE_BERRY_SEED,
         name: 'WHITE BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    BAR_BERRY: {
+    BAR_BERRY_SEED: {
         resource_id: BAR_BERRY_SEED,
         name: 'BAR BERRY',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    AVACADO: {
+    AVACADO_SEED: {
         resource_id: AVACADO_SEED,
         name: 'AVACADO',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    MANGO: {
+    MANGO_SEED: {
         resource_id: MANGO_SEED,
         name: 'MANGO',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    LYCHEE: {
+    LYCHEE_SEED: {
         resource_id: LYCHEE_SEED,
         name: 'LYCHEE',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -214,7 +216,7 @@ let seedConfig = {
 
     // herbs
 
-    GUAM: {
+    GUAM_SEED: {
         resource_id: GUAM_SEED,
         name: 'GUAM',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -222,7 +224,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    MARRENTILL: {
+    MARRENTILL_SEED: {
         resource_id: MARRENTILL_SEED,
         name: 'MARRENTILL',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -230,7 +232,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    TARROMIN: {
+    TARROMIN_SEED: {
         resource_id: TARROMIN_SEED,
         name: 'TARROMIN',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -238,7 +240,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    HARRALANDER: {
+    HARRALANDER_SEED: {
         resource_id: HARRALANDER_SEED,
         name: 'HARRALANDER',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -246,7 +248,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    RANARR: {
+    RANARR_SEED: {
         resource_id: RANARR_SEED,
         name: 'RANARR',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -254,7 +256,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    TOADFLAX: {
+    TOADFLAX_SEED: {
         resource_id: TOADFLAX_SEED,
         name: 'TOADFLAX',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -262,7 +264,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    IRIT: {
+    IRIT_SEED: {
         resource_id: IRIT_SEED,
         name: 'IRIT',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -270,7 +272,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    WERGALI: {
+    WERGALI_SEED: {
         resource_id: WERGALI_SEED,
         name: 'WERGALI',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -278,7 +280,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    AVANTOE: {
+    AVANTOE_SEED: {
         resource_id: AVANTOE_SEED,
         name: 'AVANTOE',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -286,7 +288,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    KWUARM: {
+    KWUARM_SEED: {
         resource_id: KWUARM_SEED,
         name: 'KWUARM',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -294,7 +296,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    BLOODWEED: {
+    BLOODWEED_SEED: {
         resource_id: BLOODWEED_SEED,
         name: 'BLOODWEED',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -302,7 +304,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    SNAPDRAGON: {
+    SNAPDRAGON_SEED: {
         resource_id: SNAPDRAGON_SEED,
         name: 'SNAPDRAGON',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -310,7 +312,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    CADANTINE: {
+    CADANTINE_SEED: {
         resource_id: CADANTINE_SEED,
         name: 'CADANTINE',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -318,7 +320,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    LANTADYME: {
+    LANTADYME_SEED: {
         resource_id: LANTADYME_SEED,
         name: 'LANTADYME',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -326,7 +328,7 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    ARBUCK: {
+    ARBUCK_SEED: {
         resource_id: ARBUCK_SEED,
         name: 'ARBUCK',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -334,21 +336,21 @@ let seedConfig = {
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
 
-    DWARF_WEED: {
+    DWARF_WEED_SEED: {
         resource_id: DWARF_WEED_SEED,
         name: 'DWARF WEED',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    TORSTOL: {
+    TORSTOL_SEED: {
         resource_id: TORSTOL_SEED,
         name: 'TORSTOL',
         growTime: Math.floor(Math.random() * 1000) * 1000,
         yieldMin: Math.floor(Math.random() * 10) * 1,
         yieldMax: Math.floor(Math.random() * 10) * 1 + 10,
     },
-    FELLSTALK: {
+    FELLSTALK_SEED: {
         resource_id: FELLSTALK_SEED,
         name: 'FELLSTALK',
         growTime: Math.floor(Math.random() * 1000) * 1000,
@@ -359,49 +361,18 @@ let seedConfig = {
     // trees
 };
 
-let ALL_FOOD_SEEDS = [
-    new Seed(seedConfig.POTATO, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.ONION, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.CABBAGE, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.TOMATO, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.CORN, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.STRAWBERRY, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.STRAWBERRY, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.WATERMELON, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.RED_BERRY, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.CADAVA_BERRY, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.DWELL_BERRY, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.JANGER_BERRY, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.WHITE_BERRY, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.BAR_BERRY, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.AVACADO, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.MANGO, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.LYCHEE, Math.floor(Math.random() * 1000)),
-];
-
-let ALL_HERB_SEEDS = [
-    new Seed(seedConfig.GUAM, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.MARRENTILL, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.TARROMIN, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.HARRALANDER, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.RANARR, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.TOADFLAX, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.IRIT, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.WERGALI, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.AVANTOE, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.KWUARM, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.BLOODWEED, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.SNAPDRAGON, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.CADANTINE, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.LANTADYME, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.ARBUCK, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.DWARF_WEED, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.TORSTOL, Math.floor(Math.random() * 1000)),
-    new Seed(seedConfig.FELLSTALK, Math.floor(Math.random() * 1000)),
-];
-
-export class FarmingPage extends React.Component {
+@inject('applicationStore')
+@observer
+export class FarmingPage extends React.Component<{ applicationStore?: ApplicationStore }> {
     public render() {
+        let foodSeeds = this.props.applicationStore.bankStore.allFoodSeeds.map((x) => {
+            return new Seed(seedConfig[x.id], x.count);
+        });
+
+        let herbSeeds = this.props.applicationStore.bankStore.allHerbSeeds.map((x) => {
+            return new Seed(seedConfig[x.id], x.count);
+        });
+
         return (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: `100%`, paddingTop: 20 }}>
                 <div
@@ -419,9 +390,9 @@ export class FarmingPage extends React.Component {
                     <FarmingWeatherInfo weather={weather} />
 
                     <p style={{ color: 'white', paddingLeft: 20, paddingTop: 15 }}>fruits / vegtables</p>
-                    <SeedList seeds={ALL_FOOD_SEEDS} />
+                    <SeedList seeds={foodSeeds} />
                     <p style={{ color: 'white', paddingLeft: 20, paddingTop: 15 }}>herbs</p>
-                    <SeedList seeds={ALL_HERB_SEEDS} />
+                    <SeedList seeds={herbSeeds} />
                 </div>
             </div>
         );
@@ -464,6 +435,7 @@ export class SeedList extends React.Component<{ seeds: Seed[] }> {
                 {this.props.seeds.map((x) => {
                     return (
                         <div
+                            key={x.name}
                             style={{
                                 borderBottom: '1px solid #FFFFFFCC',
                                 height: 25,
@@ -550,8 +522,15 @@ export const FarmingWeatherInfo = (props: { weather: Weather[] }) => {
                 justifyContent: 'space-between',
             }}
         >
-            {props.weather.map((x) => {
-                return <img src={x.icon} style={{ width: 47, height: 47, borderRadius: 25, backgroundColor: 'grey' }} />;
+            {props.weather.map((x, i) => {
+                return (
+                    <img
+                        alt='todo'
+                        key={i}
+                        src={x.icon}
+                        style={{ width: 47, height: 47, borderRadius: 25, backgroundColor: 'grey' }}
+                    />
+                );
             })}
         </div>
     );

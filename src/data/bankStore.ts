@@ -18,6 +18,7 @@ import {
     GUAM_SEED,
     HARRALANDER_SEED,
     IRIT_SEED,
+    ItemType,
     JANGER_BERRY_SEED,
     KWUARM_SEED,
     LANTADYME_SEED,
@@ -38,10 +39,10 @@ import {
     WERGALI_SEED,
     WHITE_BERRY_SEED,
 } from '../config/itemConfig';
-import { InventoryItem } from '../models/Item';
+import { BankItem } from '../models/Item';
 
 export class BankStore {
-    @observable public items: InventoryItem[] = [];
+    @observable public items: BankItem[] = [];
     private applicationStore: ApplicationStore;
     private taskKey = 'BANK_INVENTORY';
 
@@ -50,7 +51,7 @@ export class BankStore {
             return;
         }
 
-        this.items = data.items.map((x) => new InventoryItem(x.id, x.count));
+        this.items = data.items.map((x) => new BankItem({ id: x.id, count: x.count, itemType: x.itemType }));
     };
 
     private saveData = () => {
@@ -60,6 +61,7 @@ export class BankStore {
             items.push({
                 id: x.id,
                 count: x.count,
+                itemType: x.itemType,
             });
         });
 
@@ -131,7 +133,7 @@ export class BankStore {
         let itemIndex = this.items.findIndex((x) => x.id === itemId);
 
         if (itemIndex === -1) {
-            let empty_item = ALL_ITEMS[itemId] as InventoryItem;
+            let empty_item = ALL_ITEMS[itemId] as BankItem;
             if (empty_item === undefined) {
                 throw Error('undefined item was querieed');
             }
@@ -142,4 +144,12 @@ export class BankStore {
 
         this.items[itemIndex].incrementValueBy(count);
     };
+
+    public get allHerbSeeds() {
+        return this.items.filter((x) => x.itemType === ItemType.HERB_SEED);
+    }
+
+    public get allFoodSeeds() {
+        return this.items.filter((x) => x.itemType === ItemType.FOOD_SEED);
+    }
 }
